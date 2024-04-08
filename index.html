@@ -1,0 +1,2908 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="The Ragnarok Prime Calculator, able to simulate stats, equipment, status resistance, skills and damage from Characters in PVM, MVP and PVP environments">
+    <meta name="author" content="Kord">
+	<meta name="keywords" content="Ragnarok,Online,Ragnarok Online,EuRO,PVP,PVM,WOE,MVP,Calc,Calculator,Sim,Simulator,New,Current,prime,Ragnarok Prime,RO Prime,Loki,4 Games,185/65,185">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<link rel="canonical" href="https://roprime-simulator.com/index.html">
+    <title>Ragnarok Prime Stat Simulator</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2-v2.min.css" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/68044697ab.js" crossorigin="anonymous"></script>
+	
+	<link href="vendor/chosen_v1.8.7/chosen.min.css" rel="stylesheet">
+	<!-- <link href="vendor/chosen_v1.8.7/docsupport/style.css" rel="stylesheet"> -->
+	
+	
+	<!-- Simulator -->
+	<script type="text/javascript">//<![CDATA[
+		var Language = 1; // japanese = 0, english = 1
+		var PlayerVersusPlayer = 0;
+		var PATCH = 1;
+		var BETA = false;
+	//]]></script>
+
+	<!-- AdSense -->
+	<script type="text/plain" data-cookie-consent="targeting" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6824539470557939" 
+		  crossorigin="anonymous"></script>
+	<!-- end of AdSense-->
+
+	<!-- Analytics -->
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-MRDV25K');</script>
+	<!-- End Google Tag Manager -->
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-78085FSM4Q"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-78085FSM4Q');
+	</script>
+	<!-- end of Analytics-->
+	
+</head>
+
+<body id="page-top">
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MRDV25K"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-icon ">
+                    <img src=".\\img\\angeling.gif" style="width: 50px;"></img>
+                    <!-- <img src=".\\img\\2936.gif" style="width: 50px;transform: scale(-1, 1);"></img> -->
+					<!-- <img src=".\\img\\1062.gif" style="width: 50px;transform: scale(-1, 1);"></img> -->
+					<!-- <img src=".\\img\\1514.gif" style="width: 50px;transform: scale(-1, 1);"></img> -->
+                </div>
+                <div class="sidebar-brand-text mx-3">Ragnarok Prime Simulator</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Dashboard -->
+			<span id="menu"></span>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+			
+			
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+           
+		   <!-- Main Content -->
+            <div id="content">
+				
+				<!-- Topbar -->
+				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                </nav>
+				<!-- End of Topbar -->
+						
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
+				
+					<form name="calcForm" action="https://roprime-simulator.com/(EmptyReference!)">
+
+						<!-- Page Heading -->
+						<div class="row">
+							<!-- save area -->
+							<div id="draggable" class="padded_side" style="width: fit-content;max-width : 80%">
+								<div class="card shadow mb-4">
+									<!-- Card Header -->
+									<div class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+										<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('savearea')"><span class="padded_large">Save</span></h6>
+									</div>
+									<!-- Card Body -->
+									<div class="card-body"  id="savearea">
+										<div>
+											<div style="display: inline-block;">
+												<input value="Save" onclick="SaveCookie()" type="button" class="button">
+												<select id="saveList">
+													<option value="num00" selected="selected">Save1: No Data</option>
+												<option value="num01">Save2: No Data</option><option value="num02">Save3: No Data</option><option value="num03">Save4: No Data</option><option value="num04">Save5: No Data</option><option value="num05">Save6: No Data</option><option value="num06">Save7: No Data</option><option value="num07">Save8: No Data</option><option value="num08">Save9: No Data</option><option value="num09">Save10: No Data</option><option value="num10">Save11: No Data</option><option value="num11">Save12: No Data</option><option value="num12">Save13: No Data</option><option value="num13">Save14: No Data</option><option value="num14">Save15: No Data</option><option value="num15">Save16: No Data</option></select>
+												<input value="Load" onclick="LoadCookie()" type="button">
+												<input name="saveName" value="Save Data Name" type="text">
+											</div>
+											<div style="display: inline-block;">
+												<select id="A_SaveType">
+													<option selected="selected" value="0">DOM</option>
+													<option value="1">Cookie</option>
+												</select>
+												<input value="delete saved data" onclick="" type="button">
+											<!-- </div> -->
+											</div>
+											<div>
+												<input name="ID_X1" value="Save URL" onclick="URLOUT()" type="button">
+												<input name="URL_TEXT" type="text" style="width:50%;">
+											</div>
+											<div>	
+												<input id="URLLOAD" name="URLLOAD" value="Load a PVP enemy from URL" onclick="getEnemyFromURL()" type="button">
+												<input id="URL_LOAD" name="URL_LOAD" type="text" style="width:50%;">
+											</div>
+											<div>
+												<input value="Change server update" onclick="ChangePatch()" type="button">
+												<select id="A_Patch_Num" onchange="ChangePatch()">
+													<option value="0">Lv. 175/60</option>
+													<option selected="selected" value="1">Lv. 185/65 (Eu/Ru Prime)</option>
+													<option value="2">3rd Class skill balance </option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							  
+						</div>
+						<div class="d-sm-flex align-items-center justify-content-between mb-4">
+							<h1 class="h3 mb-0 text-gray-800" >Character</h1>
+						</div>
+						<!-- base stats -->
+						<div class="row">
+						
+							<!-- STATS -->
+							<div class="padded_side">
+								<div class="shadow card mb-4">
+									<!-- Card Header -->
+									<div class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+										
+										<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('main_stat')"><span class="padded_large">Stats</span></h6>
+									</div>
+									<!-- Card Body -->
+									<div class="card-body" id="main_stat">
+										<div>
+											<table class="shadow table-responsive">
+												<tbody>
+													<tr>
+														<td colspan="2" class="padded">
+															Current Class:<br>
+															<select name="A_JOB" onchange="ChangeJob(this[this.selectedIndex].value) | StAllCalc() | StCalc()">
+																<optgroup label="Novice">
+																<option selected="selected" value="0">Novice</option>
+																</optgroup>
+																<optgroup label="1st Job">
+																	<option value="1">Swordman</option>
+																	<option value="2">Thief</option>
+																	<option value="3">Acolyte</option>
+																	<option value="4">Archer</option>
+																	<option value="5">Mage</option>
+																	<option value="6">Merchant</option>
+																</optgroup>
+																<optgroup label="2nd Job">
+																	<option value="7">Knight</option>
+																	<option value="8">Assassin</option>
+																	<option value="9">Priest</option>
+																	<option value="10">Hunter</option>
+																	<option value="11">Wizard</option>
+																	<option value="12">Blacksmith</option>
+																	<option value="13">Crusader</option>
+																	<option value="14">Rogue</option>
+																	<option value="15">Monk</option>
+																	<option value="16">Bard</option>
+																	<option value="17">Dancer</option>
+																	<option value="18">Sage</option>
+																	<option value="19">Alchemist</option>
+																</optgroup>
+																<optgroup label="Super Novice">
+																	<option value="20">Super Novice</option>
+																	<option value="73">Expanded Super Novice</option>
+																</optgroup>
+																<optgroup label="Transcended Novice">
+																	<option value="34">High Novice</option>
+																</optgroup>
+																<optgroup label="Transcended 1st Job">
+																	<option value="35">High Swordman</option>
+																	<option value="36">High Thief</option>
+																	<option value="37">High Acolyte</option>
+																	<option value="38">High Archer</option>
+																	<option value="39">High Magician</option>
+																	<option value="40">High Merchant</option>
+																</optgroup>
+																<optgroup label="Transcended 2nd Job">
+																	<option value="21">Lord Knight</option>
+																	<option value="22">Assassin Cross</option>
+																	<option value="23">High Priest</option>
+																	<option value="24">Sniper</option>
+																	<option value="25">High Wizard</option>
+																	<option value="26">Mastersmith</option>
+																	<option value="27">Paladin</option>
+																	<option value="28">Stalker</option>
+																	<option value="29">Champion</option>
+																	<option value="30">Minstrel</option>
+																	<option value="31">Gypsy</option>
+																	<option value="32">Scholar</option>
+																	<option value="33">Biochemist</option>
+																</optgroup>
+																<optgroup label="Transcended 3rd Job">
+																	<option value="47">Rune Knight (trans)</option>
+																	<option value="49">Guillotine Cross (trans)</option>
+																	<option value="51">Arch Bishop (trans)</option>
+																	<option value="53">Ranger (trans)</option>
+																	<option value="55">Warlock (trans)</option>
+																	<option value="57">Mechanic (trans)</option>
+																	<option value="59">Royal Guard (trans)</option>
+																	<option value="61">Shadow Chaser (trans)</option>
+																	<option value="63">Sura (trans)</option>
+																	<option value="65">Maestro (trans)</option>
+																	<option value="67">Wanderer (trans)</option>
+																	<option value="69">Sorcerer (trans)</option>
+																	<option value="71">Geneticist (trans)</option>
+																</optgroup>
+																<optgroup label="Non-Transcended 3rd Job">
+																	<option value="46">Rune Knight (non-trans)</option>
+																	<option value="48">Guillotine Cross (non-trans)</option>
+																	<option value="50">Arch Bishop (non-trans)</option>
+																	<option value="52">Ranger (non-trans)</option>
+																	<option value="54">Warlock (non-trans)</option>
+																	<option value="56">Mechanic (non-trans)</option>
+																	<option value="58">Royal Guard (non-trans)</option>
+																	<option value="60">Shadow Chaser (non-trans)</option>
+																	<option value="62">Sura (non-trans)</option>
+																	<option value="64">Maestro (non-trans)</option>
+																	<option value="66">Wanderer (non-trans)</option>
+																	<option value="68">Sorcerer (non-trans)</option>
+																	<option value="70">Geneticist (non-trans)</option>
+																</optgroup>
+																<optgroup label="Expanded 1st Job">
+																	<option value="41">Taekwon Kid</option>
+																	<option value="44">Ninja</option>
+																	<option value="45">Gunslinger</option>
+																</optgroup>
+																<optgroup label="Expanded 2nd Job">
+																	<option value="42">Teakwon Master</option>
+																	<option value="43">Soul Linker</option>
+																	<option value="72">Kagerou/Oboro</option>
+																	<option value="74">Rebellion</option>
+																</optgroup>
+																<optgroup label="Expanded 3rd Job">
+																	<option value="76">Star Emperor</option>
+																	<option value="77">Soul Reaper</option>
+																</optgroup>
+																<optgroup label="Doram">
+																	<option value="75">Summoner</option>
+																</optgroup>
+															</select>
+														</td>
+														<td colspan="2" class="padded tab-sdl">Auto Base Lv.
+														<!-- </td> -->
+														<!-- <td class="padded"> -->
+															<!-- <input name="BLVauto" checked="checked" type="checkbox"> -->
+															<input name="BLVauto" type="checkbox">
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Base Lv.
+														</td>
+														<td class="padded">
+															<select id="A_BaseLV" name="A_BaseLV" style="width:65px;" onchange="StCalc(1)|StAllCalc()"></select>
+														</td>
+														<td class="padded">Job Lv.
+														</td>
+														<td class="padded">
+															<select name="A_JobLV" style="width:65px;" onchange="StAllCalc()"></select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">STR</td>
+														<td class="padded">
+															<select name="A_STR" style="width:65px;" onchange="StCalc() | StAllCalc()">
+															</select>
+															<span id="A_STRp"></span>
+														</td>
+														<td class="padded">AGI</td>
+														<td class="padded">
+															<select name="A_AGI" style="width:65px;" onchange="StCalc() | StAllCalc()">
+															</select>
+															<span id="A_AGIp"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">VIT</td>
+														<td class="padded">
+															<select name="A_VIT" style="width:65px;" onchange="StCalc() | StAllCalc()">
+															</select>
+															<span id="A_VITp"></span>
+														</td>
+														<td class="padded">INT</td>
+														<td class="padded">
+															<select name="A_INT" style="width:65px;" onchange="StCalc() | StAllCalc()">
+															</select>
+															<span id="A_INTp"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">DEX</td>
+														<td class="padded">
+															<select name="A_DEX" style="width:65px;" onchange="StCalc() | StAllCalc()">
+															</select>
+															<span id="A_DEXp"></span>
+														</td>
+														<td class="padded">LUK</td>
+														<td class="padded">
+															<select name="A_LUK" style="width:65px;" onchange="StCalc() | StAllCalc()">
+															</select>
+															<span id="A_LUKp"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Points left</td>
+														<td class="padded"><span id="A_STPOINT"></span></td>
+														<td class="padded" id="adoptedLabel">Adopted</td>
+														<td class="padded"><input id="adoptedCheck" name="A_youshi" onclick="ClickAdopted()" type="checkbox"></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- SUB STATS-->
+							<div class="padded_side">
+								<div class="card shadow mb-4">
+									<!-- Card Header -->
+									<div
+										class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+										<h6 class="m-0 font-weight-bold text-primary head_btn"><span class="padded_large" onclick="ToggleVisibility('sub_stat')">Sub Stats</span></h6>
+									</div>
+									<!-- Card Body -->
+									<div class="card-body" id="sub_stat">
+										<table class="shadow">
+											<tbody>
+												<tr>
+													<td class="padded">Max HP</td>
+													<td class="padded" id="A_MaxHP"></td>
+													<td class="padded">Max SP</td>
+													<td class="padded" id="A_MaxSP"></td>
+												</tr>
+												<tr>
+													<td class="padded">ATK</td>
+													<td class="padded" id="A_ATK"><br></td>
+													<td class="padded">MATK</td>
+													<td class="padded" id="A_MATK"><br></td>
+												</tr>
+												<tr>
+													<td class="padded">DEF</td>
+													<td class="padded" id="A_totalDEF"><br></td>
+													<td class="padded">MDEF</td>
+													<td class="padded" id="A_MDEF"><br></td>
+												</tr>
+												<tr>
+													<td class="padded">HIT</td>
+													<td class="padded" id="A_HIT"></td>
+													<td class="padded">FLEE</td>
+													<td class="padded" id="A_FLEE"></td>
+												</tr>
+												<tr>
+													<td class="padded">P. Dodge</td>
+													<td class="padded" id="A_LUCKY"></td>
+													<td class="padded">Critical</td>
+													<td class="padded" id="A_CRI"></td>
+												</tr>
+												<tr>
+													<td class="padded">HP Regen</td>
+													<td class="padded" id="A_HPR"></td>
+													<td class="padded">SP Regen</td>
+													<td class="padded" id="A_SPR"></td>
+												</tr>
+												<tr>
+													<td class="padded" colspan="2">ASPD</td>
+													<td class="padded" id="A_ASPD" colspan="2"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							
+							<!--Extended Info Menu-->
+							<div class="padded_side">
+								<div class="shadow card mb-4">
+									<!-- Card Header -->
+									<div
+										class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+										<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('ext_info')"><span class="padded_large">Extended Info</span></h6>
+									</div>
+									<!-- Card Body -->
+									<div class="card-body" id="ext_info">
+										<table class="shadow">
+											<tbody>
+												<tr>
+													<td class="padded">
+														<select name="ExtendedInfo" style="width:200px;" onchange="PrepExtenededInfo() | StAllCalc()">
+															<option value="0" selected="selected">-</option><option value="1">Heal Amount</option><option value="2">Increased HP Recovery</option><option value="3">Increased SP Recovery</option><option value="4">Weight Limit</option><option value="5">Element Resistance Multipliers</option><option value="6">Race Resistance</option><option value="7">Status Resistance</option><option value="8">Others Resistance</option><option value="9">Cast and Delay</option><option value="10">Experience Calculator</option></select>
+													</td>
+												</tr>
+												<tr>
+													<td class="padded">
+														<span id="A_KakutyouSel"></span>
+														<span id="A_KakutyouData"></span>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						<!-- equipment -->
+						<div class="d-sm-flex align-items-center justify-content-between mb-4">
+							<h1 class="h3 mb-0 text-gray-800">Equipment</h1>
+						</div>
+						
+						<div class="row">
+							<div>
+								<!--Main Weapon-->
+								<div class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn onclick="ToggleVisibility('WeaponI')""><span class="padded_large">Main Weapon (right hand)</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="WeaponI">
+											<table class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded">Weapon Type</td>
+														<td class="padded">
+															<select name="A_WeaponType" style="width:200px;" onchange="ClickWeaponType(this[this.selectedIndex].value) | StAllCalc()">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Card Shortcuts</td>
+														<td class="padded">
+															<select name="A_SHORTCUT_R" style="width:200px;" onchange="ChangeShortCut_R()">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															Name
+														<select name="A_Weapon_ATKplus" class="select-ref" style="visibility: hidden;" onchange="StAllCalc()|ClickWeapon(this[this.selectedIndex].value,1)">
+														</select>
+														</td>
+														<td class="padded">
+															<select id="A_weapon1" style="width:200px;" onchange="ClickWeapon(this[this.selectedIndex].value,0)|StAllCalc()|DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Card 1</td>
+														<td class="padded">
+															<select name="A_weapon1_card1" style="width:200px;" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Card 2</td>
+														<td class="padded">
+															<select name="A_weapon1_card2" style="width:200px;" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Card 3</td>
+														<td class="padded">
+															<select name="A_weapon1_card3" style="width:200px;" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Card 4</td>
+														<td class="padded">
+															<select name="A_weapon1_card4" style="width:200px;" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Element</td>
+														<td class="padded">
+															<select name="A_Weapon_element" style="width:200px;">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Projectile</td>
+														<td class="padded">
+															<select id="A_Arrow" style="width: 200px; visibility: hidden;" onchange="StAllCalc()">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Enchants</td>
+														<td class="padded">
+															<select id="A_WEAPON_ENCHANT_2" style="width: 200px;" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+															<br>
+															<select id="A_WEAPON_ENCHANT_3" style="width: 200px;" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select><br>
+															<select id="A_WEAPON_ENCHANT_4" style="width: 200px;" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							
+								<!-- Off Weapon-->
+								<div id="offweapon" style="display:none" class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn"  onclick="ToggleVisibility('WeaponII')"><span class="padded_large">Off Weapon (left hand)</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="WeaponII">
+											<table class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded">Weapon Type</td>
+														<td class="padded"><span id="A_SobWeaponName"></span></td>
+													</tr>
+													<tr>
+														<td class="padded">Card Shortcuts</td>
+														<td class="padded">
+															<span id="spanA_weapon2_CardShort"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															Name
+															<span id="spanA_weapon2seiren"></span>
+														</td>
+														<td class="padded">
+															<span id="spanA_weapon2"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Card 1</td>
+														<td class="padded">
+															<span id="nA_weapon2_c1"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Card 2</td>
+														<td class="padded">
+															<span id="nA_weapon2_c2"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Card 3</td>
+														<td class="padded">
+															<span id="nA_weapon2_c3"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Card 4</td>
+														<td class="padded">
+															<span id="nA_weapon2_c4"></span>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Element</td>
+														<td class="padded"></td>
+													</tr>
+													<tr>
+														<td class="padded">Projectile</td>
+														<td class="padded"></td>
+													</tr>
+													<tr>
+														<td class="padded">Malangdo Enchants</td>
+														<td class="padded">
+														<span id="A_Mal_Ench3sp">
+															<select id="A_Mal_Ench3" style="width:200px" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">"(No Enchant)"</option>
+															</select>
+														</span>
+														<br>
+														<span id="A_Mal_Ench4sp">
+															<select id="A_Mal_Ench4" style="width: 200px;" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">"(No Enchant)"</option>
+															</select>
+														</span>
+													</td>
+												</tr>
+												</tbody>	
+											</table>
+										</div>
+									</div>
+								</div>
+							
+								<!--Shadow Armors-->
+								<div class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn"><span class="padded_large onclick="ToggleVisibility('Shadows')"">Shadow Armor</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Shadows">
+											<table class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded">
+															<select name="A_SHADOW_BODY_DEF_PLUS" class="select-ref" onchange="StAllCalc()">
+															</select>
+														</td>
+														<td class="padded" >
+															<select id="A_SHADOW_body" class="select-eq" onchange="ClickEquip(this[this.selectedIndex].value,0,11)|StAllCalc()|DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded" >
+														</td>
+														<td class="padded" >
+															<select id="A_SHADOW_BODY_ENCHANT" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select name="A_SHADOW_WEAPON_DEF_PLUS" class="select-ref" onchange="StAllCalc()">
+															</select>
+														</td>
+														<td class="padded" >
+															<select id="A_SHADOW_weapon" class="select-eq" onchange="ClickEquip(this[this.selectedIndex].value,0,12)|StAllCalc()|DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+														</td>
+														<td class="padded" >
+															<select id="A_SHADOW_WEAPON_ENCHANT" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select name="A_SHADOW_SHIELD_DEF_PLUS" class="select-ref" onchange="StAllCalc()">
+															</select>
+														</td>
+														<td class="padded" >
+															<select id="A_SHADOW_shield" class="select-eq" onchange="ClickEquip(this[this.selectedIndex].value,0,13)|StAllCalc()|DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+														</td>
+														<td class="padded" >
+															<select id="A_SHADOW_SHIELD_ENCHANT" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select name="A_SHADOW_SHOES_DEF_PLUS" class="select-ref" onchange="StAllCalc()">
+															</select>
+														</td>
+														<td class="padded" >
+															<select id="A_SHADOW_shoes" class="select-eq" onchange="ClickEquip(this[this.selectedIndex].value,0,14)|StAllCalc()|DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+														</td>
+														<td class="padded" >
+															<select id="A_SHADOW_SHOES_ENCHANT" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select name="A_SHADOW_EARRING_DEF_PLUS" class="select-ref" onchange="StAllCalc()">
+															</select>
+														</td>
+														<td class="padded" >
+															<select id="A_SHADOW_earring" class="select-eq" onchange="ClickEquip(this[this.selectedIndex].value,0,15)|StAllCalc()|DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+														</td>
+														<td class="padded" >
+															<select id="A_SHADOW_EARRING_ENCHANT" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select name="A_SHADOW_PENDANT_DEF_PLUS" class="select-ref" onchange="StAllCalc()">
+															</select>
+														</td>
+														<td class="padded" >
+															<select id="A_SHADOW_pendant" class="select-eq" onchange="ClickEquip(this[this.selectedIndex].value,0,16)|StAllCalc()|DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+														</td>
+														<td class="padded" >
+															<select id="A_SHADOW_PENDANT_ENCHANT" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div>
+								<!--Headgear - Upper-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn onclick="ToggleVisibility('HeadgearU')""><span class="padded_large">Headgear - Upper</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="HeadgearU">
+											<table class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded">
+															<select name="A_HEAD_DEF_PLUS" class="select-ref" onchange="StAllCalc()">
+															</select>
+															<select id="A_head1" class="select-eq js-example-basic-single" onchange="StAllCalc()|ClickHeadUp(this[this.selectedIndex].value,0)|DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+														<td class="padded">
+															<select name="A_head1_card" class="select-eq" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<!-- Upper Headgear Enchant -->
+													<tr>
+														<td class="padded">
+															<select id="A_HEAD_UPPER_ENCHANT_2" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)"> 
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+														<td class="padded">
+															<select id="A_HEAD_UPPER_ENCHANT_3" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select id="A_HEAD_UPPER_ENCHANT_4" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+														<td class="padded">
+															<!-- <select name="A_HSE_HEAD1" style="width:150px;visibility:hidden;" disabled onchange="StAllCalc()"> -->
+															<!-- </select> -->
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<!--Armor-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Armor')"><span class="padded_large">Armor</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Armor">
+											<table class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded">
+															<select name="A_BODY_DEF_PLUS" class="select-ref" onchange="StAllCalc()|ClickArmor(this[this.selectedIndex].value,1)">
+															</select>
+															<select id="A_body" class="select-eq" onchange="StAllCalc()|ClickArmor(this[this.selectedIndex].value,0)|DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+														<td class="padded">
+															<select name="A_body_card" class="select-eq" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)">
+															</select>
+															
+														</td>
+														<!-- <td class="padded" > -->
+															
+														<!-- </td> -->
+													</tr>
+													<!-- Armor Enchant -->
+													<tr>
+														<td class="padded">
+															<select id="A_ARMOR_ENCHANT_2" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)"> 
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+														<td class="padded">
+															<select id="A_ARMOR_ENCHANT_3" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+														<select id="A_ARMOR_ENCHANT_4" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+														<td class="padded">
+															<!-- <select name="A_HSE" style="width:150px;visibility:hidden;" disabled onchange="StAllCalc()"> -->
+															<!-- </select> -->
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<!-- Garment -->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn onclick="ToggleVisibility('Garment')""><span class="padded_large">Garment</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Garment">
+											<table class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded">
+															<select name="A_SHOULDER_DEF_PLUS" class="select-ref" onchange="StAllCalc()|ClickGarment(this[this.selectedIndex].value,1)">
+															</select>
+															<select id="A_shoulder" class="select-eq" class="select-eq" onchange="StAllCalc()|ClickGarment(this[this.selectedIndex].value,0) | DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+														<td class="padded">
+															<select name="A_shoulder_card" class="select-eq" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<!-- Garment Enchant -->
+													<tr>
+														<td class="padded">
+															<select id="A_GARMENT_ENCHANT_2" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)"> 
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+														<td class="padded">
+															<select id="A_GARMENT_ENCHANT_3" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select id="A_GARMENT_ENCHANT_4" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+														<td class="padded">
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<!--Accessory 1-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Accessory_1')"><span class="padded_large">Accessory (Left)</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Accessory_1">
+											<table class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded">
+															<select id="A_acces1" class="select-eq" onchange="StAllCalc()|ClickAcces(this[this.selectedIndex].value,1)|DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+														<td class="padded">
+															<select name="A_acces1_card" class="select-eq" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<!-- Accessory 1 Enchant -->
+													<tr>
+														<td class="padded">
+															<select id="A_ACCES1_ENCHANT_2" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)"> 
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+														<td class="padded">
+															<select id="A_ACCES1_ENCHANT_3" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select id="A_ACCES1_ENCHANT_4" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+														<td class="padded">
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							
+							<div>
+								<!--Headgear - Middle & Lower-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('HeadgearsML')"><span class="padded_large">Headgears - Middle & Lower</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="HeadgearsML">
+											<table class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded">
+															<select id="A_head2" class="select-eq" onchange="StAllCalc()|DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+														<td class="padded">
+															<select name="A_head2_card" class="select-eq" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select id="A_head3" class="select-eq" onchange="StAllCalc()|DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+														<td class="padded"></td>
+													</tr>
+													<tr >
+														<td class="padded" style="visibility:hidden;"><select></select></td>
+														<td class="padded"></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<!--Shield-->
+								<div id="Shield_Pannel" class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Shield')"><span class="padded_large">Shield</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Shield">
+											<table class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded">
+															<select id="A_LEFT_DEF_PLUS" class="select-ref" style="visibility: visible;" onchange="StAllCalc()">
+															</select>
+															<select id="A_left" class="select-eq" style="visibility: visible;" onchange="StAllCalc()|DisplayItemDescription(this[this.selectedIndex].value)|ClickEquip(this[this.selectedIndex].value,0,5)">
+															</select>
+														</td>
+														<td class="padded">
+															<select id="A_left_card" class="select-eq" style="visibility: visible;" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<!-- Shield Enchant --> 
+													<tr>	 
+														<td class="padded">
+															<select id="A_SHIELD_ENCHANT_2" class="select-eq" style="visibility: visible;" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+														<td class="padded">
+															<select id="A_SHIELD_ENCHANT_3" class="select-eq" style="visibility: visible;" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select><br>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select id="A_SHIELD_ENCHANT_4" class="select-eq" style="visibility: visible;" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+														<td class="padded">
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<!--Shoes-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Shoes')"><span class="padded_large">Shoes</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Shoes">
+											<table class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded">
+															<select name="A_SHOES_DEF_PLUS" class="select-ref" onchange="StAllCalc()|ClickShoes(this[this.selectedIndex].value,1)">
+															</select>
+															<select id="A_shoes" class="select-eq" onchange="StAllCalc()|ClickShoes(this[this.selectedIndex].value,0)|DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+														<td class="padded">
+															<select name="A_shoes_card" class="select-eq" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)">
+															</select>
+														</td>
+														<!-- <td class="padded"></td> -->
+													</tr>
+													<!-- Shoes Enchant -->
+													<tr>
+														<td class="padded">
+															<select id="A_SHOES_ENCHANT_2" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)"> 
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+														<td class="padded">
+															<select id="A_SHOES_ENCHANT_3" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select id="A_SHOES_ENCHANT_4" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+														<td class="padded">
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<!--Accessory 2-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Accessory_2')"><span class="padded_large">Accessory (Right)</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Accessory_2">
+											<table class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded">
+															<select id="A_acces2" class="select-eq" onchange="StAllCalc()|ClickAcces(this[this.selectedIndex].value,2)|DisplayItemDescription(this[this.selectedIndex].value)">
+															</select>
+														</td>
+														<td class="padded">
+															<select name="A_acces2_card" class="select-eq" onchange="StAllCalc()|Click_Card(this[this.selectedIndex].value)">
+															</select>
+														</td>
+													</tr>
+													<!-- Accessory 2 Enchant -->
+													<tr>
+														<td class="padded">
+															<select id="A_ACCES2_ENCHANT_2" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)"> 
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+														<td class="padded">
+															<select id="A_ACCES2_ENCHANT_3" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select id="A_ACCES2_ENCHANT_4" class="select-eq" disabled onchange="StAllCalc()|DisplayEnchantDescription(this[this.selectedIndex].value)">
+																<option value="0">(No Enchant)</option>
+															</select>
+														</td>
+														<td class="padded">
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>	
+						</div>
+						
+						<div class="row">
+
+							<!--Additional Enchants-->
+							<div  class="padded_side mobile" style="max-width:50%;overflow-x:auto;">
+								<div class="card shadow mb-4">
+									<!-- Card Header -->
+									<div class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+										<h6 class="m-0 font-weight-bold text-primary head_btn onclick="ToggleVisibility('Additional_Enchants')""><span class="padded_large">Additional Enchants</span></h6>
+									</div>
+									<!-- Card Body -->
+									<div class="card-body" id="Additional_Enchants">
+										<table class="shadow">
+											<tbody>
+												<tr>
+													<td class="padded" >STR</td>
+													<td class="padded" ><input value="0" id="E_BOOST_STR" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >AGI</td>
+													<td class="padded" ><input value="0" id="E_BOOST_AGI" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >VIT</td>
+													<td class="padded" ><input value="0" id="E_BOOST_VIT" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >INT</td>
+													<td class="padded" ><input value="0" id="E_BOOST_INT" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+												</tr>
+												<tr>	
+												<td class="padded" >DEX</td>
+													<td class="padded" ><input value="0" id="E_BOOST_DEX" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >LUK</td>
+													<td class="padded" ><input value="0" id="E_BOOST_LUK" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >ATK</td>
+													<td class="padded" ><input value="0" id="E_BOOST_ATK" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >ATK %</td>
+													<td class="padded" ><input value="0" id="E_BOOST_ATK_PERC" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+												</tr>
+												<tr>	
+													<td class="padded" >MATK</td>
+													<td class="padded" ><input value="0" id="E_BOOST_MATK" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >MATK %</td>
+													<td class="padded" ><input value="0" id="E_BOOST_MATK_PERC" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >HIT</td>
+													<td class="padded" ><input value="0" id="E_BOOST_HIT" max="100" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >FLEE</td>
+													<td class="padded" ><input value="0" id="E_BOOST_FLEE" max="100" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+												</tr>
+												<tr>
+													<td class="padded" >P. DODGE</td>
+													<td class="padded" ><input value="0" id="E_BOOST_DODGE" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >MAX HP</td>
+													<td class="padded" ><input value="0" id="E_BOOST_HP" max="5000" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >MAX SP</td>
+													<td class="padded" ><input value="0" id="E_BOOST_SP" max="200" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >MAX HP %</td>
+													<td class="padded" ><input value="0" id="E_BOOST_HP_PERC" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+												</tr>
+												<tr>
+													<td class="padded" >MAX SP %</td>
+													<td class="padded" ><input value="0" id="E_BOOST_SP_PERC" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >Ranged Damage %</td>
+													<td class="padded" ><input value="0" id="E_BOOST_RANGED" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >DEF</td>
+													<td class="padded" ><input value="0" id="E_BOOST_DEF" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >MDEF</td>
+													<td class="padded" ><input value="0" id="E_BOOST_MDEF" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+												</tr>
+												<tr>
+													<td class="padded" >CRIT</td>
+													<td class="padded" ><input value="0" id="E_BOOST_CRIT" max="50" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >Damage Reduction %</td>
+													<td class="padded" ><input value="0" id="E_BOOST_RED_PERC" max="100" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >ASPD</td>
+													<td class="padded" ><input value="0" id="E_BOOST_ASPD" max="100" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >ASPD %</td>
+													<td class="padded" ><input value="0" id="E_BOOST_ASPD_PERC" max="100" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+												</tr>
+												<tr>
+													<td class="padded" >Cast Time %</td>
+													<td class="padded" ><input value="0" id="E_BOOST_CASTING" max="100" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >*All Races %</td>
+													<td class="padded" ><input value="0" id="E_BOOST_PHY_ALL_RACES" max="100" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >*All Sizes %</td>
+													<td class="padded" ><input value="0" id="E_BOOST_PHY_ALL_SIZES" max="100" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >*All Elements %</td>
+													<td class="padded" ><input value="0" id="E_BOOST_PHY_ALL_ELEMENTS" max="100" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+												</tr>
+												<tr>
+													<td class="padded" >*All Races % (Magic)</td>
+													<td class="padded" ><input value="0" id="E_BOOST_MAG_ALL_RACES" max="100" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >*All Sizes % (Magic)</td>
+													<td class="padded" ><input value="0" id="E_BOOST_MAG_ALL_SIZES" max="100" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >*All Elements % (Magic)</td>
+													<td class="padded" ><input value="0" id="E_BOOST_MAG_ALL_ELEMENTS" max="100" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+													<td class="padded" >**All Elements % (Magic)</td>
+													<td class="padded" ><input value="0" id="E_BOOST_ALL_MAG_ELEMENTS" max="100" min="0" onchange="StAllCalc()" size="4" type="number"></td>
+												</tr>
+											</tbody>
+										</table>
+										*Damage vs race/size/element monsters
+										</br>
+										**Increase magic element damages
+									</div>
+								</div>
+							</div>
+							
+							<!--Item_Desc-->
+							<div  class="padded_side mobile" style="overflow-x:auto;max-width:50%;">
+								<div class="card shadow mb-4">
+									<!-- Card Header -->
+									<div
+										class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+										<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Item_Desc')"><span class="padded_large">Item Description - <span id="nm080">
+													</span></span></h6>
+									</div>
+									<!-- Card Body -->
+									<div class="card-body" id="Item_Desc">
+										<table class="shadow">
+											<tbody>
+												<tr>
+													<td id="ITEM0" class="padded" width="13%"></td>
+													<td id="ITEM_DATA" class="padded" width="7%"></td>
+													<td id="ITEM1" class="padded" width="13%"></td>
+													<td id="ITEM_SLOT" class="padded" width="7%"></td>
+													<td id="ITEM2" class="padded" width="13%"></td>
+													<td id="ITEM_W_LV" class="padded" width="7%"></td>
+													<td id="ITEM3" class="padded" width="13%"></td>
+													<td id="ITEM_LV" class="padded" width="7%"></td>
+													<td id="ITEM4" class="padded" width="13%"></td>
+													<td id="ITEM_WAIT" class="padded" width="7%"></td>
+												</tr>
+												<tr>
+													<td colspan="10" id="ItemDescription" class="padded"></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+				
+						</div>
+							
+						<!-- </div> -->
+						
+						<!-- buffs -->
+						<div class="d-sm-flex align-items-center justify-content-between mb-4">
+							<h1 class="h3 mb-0 text-gray-800">Self &amp; Party Buffs</h1>
+						</div>
+						
+						<div class="row">	
+							<div>
+								<!--Passive Skills-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Passive_Skills')"><span class="padded_large">Passive Skills</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Passive_Skills">
+											<span id="id_passiveSkills"></span>
+										</div>
+									</div>
+								</div>
+								
+								<!--Guild Skills-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Guild_Skills')"><span class="padded_large">Guild Skills</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Guild_Skills">
+											<table id="guild" class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded">Battle Command</td>
+														<td class="padded">
+															<input id="guildSkill0" onclick="ToggleGuildSkills()" type="checkbox">
+														</td>
+														<td class="padded">Great Leadership</td>
+														<td class="padded">
+															<select id="guildSkill1" style="width:65px;" onchange="ToggleGuildSkills()">
+																<option selected="selected" value="0">Off</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Glorious Wounds</td>
+														<td class="padded">
+															<select id="guildSkill2" style="width:65px;" onchange="ToggleGuildSkills()">
+																<option selected="selected" value="0">Off</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+															</select>
+														</td>
+														<td class="padded">Cold Heart</td>
+														<td class="padded">
+															<select id="guildSkill3" style="width:65px;" onchange="ToggleGuildSkills()">
+																<option selected="selected" value="0">Off</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">Sharp Gaze</td>
+														<td class="padded">
+															<select id="guildSkill4" style="width:65px;" onchange="ToggleGuildSkills()">
+																<option selected="selected" value="0">Off</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+															</select>
+														</td>
+														<td class="padded">Regeneration</td>
+														<td class="padded">
+															<select id="guildSkill5" style="width:65px;">
+																<option selected="selected" value="0">Off</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+															</select>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<!--Battle Chant Effects-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Battle_Chant')"><span class="padded_large">Battle Chant Effects</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Battle_Chant">
+											<table id="battlechant" class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded" height="25">All Stats +20</td>
+														<td class="padded">
+															<input id="battleChant0" onclick="ToggleBattleChant()" type="checkbox">
+														</td>
+														<td class="padded" height="25">HP +100%</td>
+														<td class="padded">
+															<input id="battleChant1" onclick="ToggleBattleChant()" type="checkbox">
+														</td>
+													</tr>
+													<tr>
+														<td class="padded" height="25">SP +100%</td>
+														<td class="padded">
+															<input id="battleChant2" onclick="ToggleBattleChant()" type="checkbox">
+														</td>
+														<td class="padded" height="25">ATK +100%</td>
+														<td class="padded">
+															<input id="battleChant3" onclick="ToggleBattleChant()" type="checkbox">
+														</td>
+													</tr>
+													<tr>
+														<td class="padded" height="25">HIT &amp; FLEE +50</td>
+														<td class="padded">
+															<input id="battleChant4" onclick="ToggleBattleChant()" type="checkbox">
+														</td>
+														<td class="padded" height="25">Damage Reduced 50%</td>
+														<td class="padded">
+															<input id="battleChant5" onclick="ToggleBattleChant()" type="checkbox">
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<!--Other Buffs-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Other_Buffs')"><span class="padded_large">Other Buffs</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Other_Buffs">
+											<span id="OtherBuffs">
+												<table class="shadow">
+													<tr>
+														<td id="EN60_1" class="bgLtRow3 padded"></td>
+														<td id="EN60_2" class="bgLtRow1 padded"></td>
+														<td id="EN61_1" class="bgLtRow3 padded"></td>
+														<td id="EN61_2" class="bgLtRow1 padded"></td>
+													</tr>
+													<tr>
+														<td id="EN62_1" class="bgLtRow3 padded"></td>
+														<td id="EN62_2" class="bgLtRow1 padded"></td>
+														<td id="EN63_1" class="bgLtRow4 padded"></td>
+														<td id="EN63_2" class="bgLtRow2 padded"></td>
+													</tr>
+													<tr>
+														<td id="EN64_1" class="bgLtRow4 padded"></td>
+														<td id="EN64_2" class="bgLtRow2 padded"></td>
+														<td id="EN65_1" class="bgLtRow4 padded"></td>
+														<td id="EN65_2" class="bgLtRow2 padded"></td>
+													</tr>
+													<tr>
+														<td id="EN66_1" class="bgLtRow3 padded"></td>
+														<td id="EN66_2" class="bgLtRow1 padded"></td>
+														<td id="EN67_1" class="bgLtRow3 padded"></td>
+														<td id="EN67_2" class="bgLtRow1 padded"></td>
+													</tr>
+													<tr>
+														<td id="EN68_1" class="bgLtRow3 padded"></td>
+														<td id="EN68_2" class="bgLtRow1 padded"></td>
+														<td id="EN69_1" class="bgLtRow4 padded"></td>
+														<td id="EN69_2" class="bgLtRow2 padded"></td>
+													</tr>
+													<tr>
+														<td id="EN610_1" class="bgLtRow4 padded"></td>
+														<td id="EN610_2" class="bgLtRow2 padded"></td>
+														<td id="EN611_1" class="bgLtRow4 padded"></td>
+														<td id="EN611_2" class="bgLtRow2 padded"></td>
+													</tr>
+													<tr>
+														<td id="EN612_1" class="bgLtRow3 padded"></td>
+														<td id="EN612_2" class="bgLtRow1 padded"></td>
+														<td id="EN613_1" class="bgLtRow3 padded"></td>
+														<td id="EN613_2" class="bgLtRow1 padded"></td>
+													</tr>
+													<tr>
+														<td id="EN614_1" class="bgLtRow3 padded"></td>
+														<td id="EN614_2" class="bgLtRow1 padded"></td>
+														<td id="EN615_1" class="bgLtRow3 padded"></td>
+														<td id="EN615_2" class="bgLtRow1 padded"></td>
+													</tr>
+													<tr>
+														<td id="EN616_1" class="bgLtRow3 padded"></td>
+														<td id="EN616_2" class="bgLtRow1 padded"></td>
+														<td id="EN617_1" class="bgLtRow3 padded"></td>
+														<td id="EN617_2" class="bgLtRow1 padded"></td>
+													</tr>
+												</table>
+											</span>
+										</div>
+									</div>
+								</div>
+								
+								<!--Miscellaneous Effects-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Misc_Effects')"><span class="padded_large">Miscellaneous Effects</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Misc_Effects">
+											<span id="miscBuffs">
+												<table class="shadow">
+													<tr>
+														<td id="petsLabel" class="bgLtRow3 padded"></td>
+														<td id="petsInput"  class="bgLtRow1 padded"></td>
+														<td id="numEnemiesLabel" class="bgLtRow3 padded"></td>
+														<td id="numEnemiesInput" class="bgLtRow1 padded"></td>
+													</tr>
+													<tr>
+														<td id="tempOneLabel" class="bgLtRow4 padded"></td>
+														<td id="tempOneInput" class="bgLtRow2 padded"></td>
+														<td id="quagLabel" class="bgLtRow4 padded"></td>
+														<td id="quagInput" class="bgLtRow2 padded"></td>
+													</tr>
+													<tr>
+														<td id="tempTwoLabel" class="bgLtRow3 padded"></td>
+														<td id="tempTwoInput" class="bgLtRow1 padded"></td>
+														<td id="agiDownLabel" class="bgLtRow3 padded"></td>
+														<td id="agiDownInput" class="bgLtRow1 padded"></td>
+													</tr>
+													<tr>
+														<td id="tempThreeLabel" class="bgLtRow4 padded"></td>
+														<td id="tempThreeInput" class="bgLtRow2 padded"></td>
+														<td id="noCritLabel" class="bgLtRow4 padded"></td>
+														<td id="noCritInput" class="bgLtRow2 padded"></td>
+													</tr>
+													<tr>
+														<td id="tempFourLabel" class="bgLtRow3 padded"></td>
+														<td id="tempFourInput" class="bgLtRow1 padded"></td>
+														<td id="poisonedLabel" class="bgLtRow3 padded"></td>
+														<td id="poisonedInput" class="bgLtRow1 padded"></td>
+													</tr>
+													<tr>
+														<td id="firstSpiritLabel" class="bgLtRow4 padded"></td>
+														<td id="firstSpiritInput" class="bgLtRow2 padded"></td>
+														<td id="cursedLabel" class="bgLtRow4 padded"></td>
+														<td id="cursedInput" class="bgLtRow2 padded"></td>
+													</tr>
+													<tr>
+														<td id="noviceLabel" class="bgLtRow3 padded"></td>
+														<td id="noviceInput" class="bgLtRow1 padded"></td>
+														<td class="bgLtRow3 padded"></td>
+														<td class="bgLtRow1 padded"></td>
+													</tr>
+												</table>
+											</span>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							<div>
+								<!--Acolyte Skills-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Acolyte_Skills')"><span class="padded_large">Acolyte Skills</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Acolyte_Skills">
+											<span id="SIENSKILL">
+														<table class="shadow">
+															<tbody>
+																<tr>
+																	<td id="AS0_1" class="padded">Blessing</td>
+																	<td id="AS0_2" class="padded">
+																	<select id="blessing" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																	</select>
+																	</td>
+																	<td id="AS1_1" class="padded">Increase AGI</td>
+																	<td id="AS1_2" class="padded">
+																		<select id="increaseAgi" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>
+																	</td>
+																</tr>
+																<tr>
+																	<td id="AS2_1" class="padded">Angelus</td>
+																	<td id="AS2_2" class="padded">
+																		<select id="angelus" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>
+																	</td>
+																	<td id="AS3_1" class="padded">Impositio Manus</td>
+																	<td id="AS3_2" class="padded">
+																		<select id="imposito" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>
+																	</td>
+																</tr>
+																<tr>
+																	<td id="AS4_1" class="padded">Suffragium</td>
+																	<td id="AS4_2" class="padded">
+																		<select id="suffragium" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>
+																	</td>
+																	<td id="AS5_1" class="padded">Gloria</td>
+																	<td id="AS5_2" class="padded"><input type="checkbox" id="gloria" onclick="ToggleAcolyteSkills(0)"></td>
+																</tr>
+																<tr>
+																	<td id="AS6_1" class="padded">Assumptio</td>
+																	<td id="AS6_2" class="padded">
+																		<select id="assumptio" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>
+																	</td>
+																	<td id="AS7_1" class="padded">Spirit Spheres</td>
+																	<td id="AS7_2" class="padded">
+																		<select id="spheres" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>
+																	</td>
+																</tr>
+																<tr>
+																	<td id="AS8_1" class="padded"><span title="bonus amount: Arch Bishop job level / 10">Clementia (bonus)*</span></td>
+																	<td id="AS8_2" class="padded">
+																		<select id="clementia" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>
+																	</td>
+																	<td id="AS9_1" class="padded"><span title="bonus amount: Arch Bishop job level / 10">Canto Candidus (bonus)*</span></td>
+																	<td id="AS9_2" class="padded">
+																		<select id="candidus" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>
+																	</td>
+																</tr>
+																<tr>
+																	<td id="AS10_1" class="padded">Expiatio</td>
+																	<td id="AS10_2" class="padded">
+																		<select id="expiatio" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>
+																	</td>
+																	<td id="AS11_1" class="padded">Sacrament</td>
+																	<td id="AS11_2" class="padded">
+																		<select id="sacrament" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>
+																	</td>
+																</tr>
+																<tr>
+																	<td id="AS12_1" class="padded">Lauda Agnus</td>
+																	<td id="AS12_2" class="padded">
+																		<select id="agnus" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>
+																	</td>
+																	<td id="AS13_1" class="padded">Lauda Ramus</td>
+																	<td id="AS13_2" class="padded">
+																		<select id="ramus" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>
+																	</td>
+																</tr>
+																<tr>
+																	<td id="AS14_1" class="padded">Gentle Touch Convert</td>
+																	<td id="AS14_2" class="padded">
+																		<select id="ppChange" style="width:65px;" onchange="ToggleAcolyteSkills(1)">
+																		</select>
+																	</td>
+																	<td id="AS15_1" class="padded">Gentle Touch Revitalize</td>
+																	<td id="AS15_2" class="padded">
+																		<select id="ppRevitalize" style="width:65px;" onchange="ToggleAcolyteSkills(2)">
+																		</select>
+																	</td>
+																</tr>
+																<tr>
+																	<td id="AS16_1" class="padded">Sura stats</td>
+																	<td id="AS16_2" colspan="3" class="padded">
+																		<select id="suraStr" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>&nbsp;
+																		<select id="suraAgi" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>&nbsp;
+																		<select id="suraVit" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>&nbsp;
+																		<select id="suraInt" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>&nbsp;
+																		<select id="suraDex" style="width:65px;" onchange="ToggleAcolyteSkills(0)">
+																		</select>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</span>
+										</div>
+									</div>
+								</div>
+								
+								<!--Performer Skills-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Performer_Skills')"><span class="padded_large">Performer Skills</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Performer_Skills">
+											<table id="performers" class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded" rowspan="3">Bard</td>
+														<td class="padded">
+															<select id="bardSkills" style="width:140px;" onchange="TogglePerformerSkills()">
+																<option selected="selected" value="0">Bard Solo</option>
+																<option value="1">Perfect Tablature</option>
+																<option value="2">Impressive Riff</option>
+																<option value="3">Magic Strings</option>
+																<option value="4">Song of Lutie</option>
+															</select>
+														</td>
+														<td class="padded">
+															<select id="bardSkillLevel" style="width:110px;" onchange="TogglePerformerSkills()">
+															</select>
+														</td>
+														<td class="padded">
+															<select id="musicLessons" style="width:110px;" onchange="TogglePerformerSkills()">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select id="maestroSkills" style="width:140px;" onchange="TogglePerformerSkills()">
+																<option selected="selected" value="0">Maestro Solo</option>
+																<option value="1">Harmonize</option>
+																<option value="2">Echo Song</option>
+																<option value="3">Windmill Rush</option>
+																<option value="4">Gloomy Shyness</option>
+																<option value="5">Frigg's Song</option>
+															</select>
+														</td>
+														<td class="padded">
+															<select id="maestroSkillLevel" style="width:110px;" onchange="TogglePerformerSkills()">
+															</select>
+														</td>
+														<td class="padded">
+															<select id="voiceLessonsM" style="width:110px;" onchange="TogglePerformerSkills()">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded" colspan="3">
+															<select id="bardAgi" style="width:65px;" onchange="TogglePerformerSkills()">
+															</select>
+															<select id="bardInt" style="width:65px;" onchange="TogglePerformerSkills()">
+															</select>
+															<select id="bardDex" style="width:65px;" onchange="TogglePerformerSkills()">
+															</select>
+															<select id="bardVit" style="width:65px;" onchange="TogglePerformerSkills()">
+															</select>
+															<select id="bardJob" style="width:100px;" onchange="TogglePerformerSkills()">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded" rowspan="3">Dancer</td>
+														<td class="padded">
+															<select id="dancerSkills" style="width:140px;" onchange="TogglePerformerSkills()">
+																<option selected="selected" value="0">Dancer Solo</option>
+																<option value="1">Focus Ballet</option>
+																<option value="2">Slow Grace</option>
+																<option value="3">Lady Luck</option>
+																<option value="4">Gypsy's Kiss</option>
+															</select>
+														</td>
+														<td class="padded">
+															<select id="dancerSkillLevel" style="width:110px;" onchange="TogglePerformerSkills()">
+															</select> 
+														</td>
+														<td class="padded">
+															<select id="danceLessons" style="width:110px;" onchange="TogglePerformerSkills()">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select id="wandererSkills" style="width:140px;" onchange="TogglePerformerSkills()">
+																<option selected="selected" value="0">Wanderer Solo</option>
+																<option value="1">Swing Dance</option>
+																<option value="2">Lover's Symphony</option>
+																<option value="3">Moonlight Serenade</option>
+																<option value="4">Gloomy Shyness</option>
+																<option value="5">Frigg's Song</option>
+															</select>
+														</td>
+														<td class="padded">
+															<select id="wandererSkillLevel" style="width:110px;" onchange="TogglePerformerSkills()">
+															</select>
+														</td>
+														<td class="padded">
+															<select id="voiceLessonsW" style="width:110px;" onchange="TogglePerformerSkills()">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded" colspan="3">
+															<select id="dancerAgi" style="width:65px;" onchange="TogglePerformerSkills()">
+															</select>
+															<select id="dancerInt" style="width:65px;" onchange="TogglePerformerSkills()">
+															</select>
+															<select id="dancerDex" style="width:65px;" onchange="TogglePerformerSkills()">
+															</select>
+															<select id="dancerLuk" style="width:65px;" onchange="TogglePerformerSkills()">
+															</select>
+															<select id="dancerJob" style="width:100px;" onchange="TogglePerformerSkills()">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded" rowspan="2">Groups</td>
+														<td class="padded">
+															<select id="ensembleSkills" style="width:140px;" onchange="TogglePerformerSkills()">
+																<option selected="selected" value="0">Ensemble</option>
+																<option value="1">Acoustic Rhythm</option>
+																<option value="2">Battle Theme</option>
+																<option value="3">Down Tempo</option>
+																<option value="4">Harmonic Lick</option>
+																<option value="5">Mental Sensing</option>
+															</select>
+														</td>
+														<td class="padded">
+															<select id="bardLevel" style="width:110px;" onchange="TogglePerformerSkills()">
+															</select>
+														</td>
+														<td class="padded">
+															<select id="dancerLevel" style="width:110px;" onchange="TogglePerformerSkills()">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															<select id="chorusSkill" style="width:140px;" onchange="TogglePerformerSkills()">
+																<option selected="selected" value="0">Chorus</option>
+																<option value="1">Dances with Wargs</option>
+																<option value="2">Song of Mana</option>
+																<option value="3">Lerad's Dew</option>
+																<option value="4">Saturday Night Fever</option>
+																<option value="5">Warcry from Beyond</option>
+																<option value="6">Sinking Melody</option>
+															</select>
+														</td>
+														<td class="padded">
+															<select id="chorusLevel" style="width:110px;" onchange="TogglePerformerSkills()">
+															</select>
+														</td>
+														<td class="padded">
+															<select id="performerCount" style="width:110px;" onchange="TogglePerformerSkills()">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded">
+															Marionette
+															<input id="marionetteControl" onclick="TogglePerformerSkills()" type="checkbox">
+														</td>
+														<td class="padded" colspan="3">
+															<select id="marionetteStr" style="width:65px;" onchange="TogglePerformerSkills()">
+															</select>
+															<select id="marionetteAgi" style="width:65px;" onchange="TogglePerformerSkills()">
+															</select>
+															<select id="marionetteVit" style="width:65px;" onchange="TogglePerformerSkills()">
+															</select>
+															<select id="marionetteInt" style="width:65px;" onchange="TogglePerformerSkills()">
+															</select>
+															<select id="marionetteDex" style="width:65px;" onchange="TogglePerformerSkills()">
+															</select>
+															<select id="marionetteLuk" style="width:65px;" onchange="TogglePerformerSkills()">
+															</select>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<!--Summoner Skills-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Summoner_Skills')"><span class="padded_large">Summoner Skills</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Summoner_Skills">
+											<table id="summoners" class="shadow">
+												<tbody>
+													<tr>
+														<td id="SUM0_1" class="padded">Bunch of Shrimp</td>
+														<td id="SUM0_2" class="padded">
+															<select id="bunchOfShrimp" style="width:65px;" onchange="StAllCalc()">
+																<option selected="selected" value="0">No</option>
+																<option value="1">Yes</option>
+															</select>
+														</td>
+														<td id="SUM1_1" class="padded">Purring</td>
+														<td id="SUM1_2" class="padded">
+															<select id="purring" style="width:65px;" onchange="StAllCalc()">
+																<option selected="selected" value="0">No</option>
+																<option value="1">Yes</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td id="SUM2_1" class="padded">Meow Meow</td>
+														<td id="SUM2_2" class="padded">
+															<select id="meowMeow" style="width:65px;" onchange="StAllCalc()">
+																<option selected="selected" value="0">No</option>
+																<option value="1">Yes</option>
+															</select>
+														</td>
+														<td id="SUM3_1" class="padded">Hiss</td>
+														<td id="SUM3_2" class="padded">
+															<select id="hiss" style="width:65px;" onchange="StAllCalc()">
+																<option selected="selected" value="0">No</option>
+																<option value="1">Yes</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td id="SUM4_1" class="padded">Arclouse Dash</td>
+														<td id="SUM4_2" class="padded">
+															<select id="arclouseDash" style="width:65px;" onchange="StAllCalc()">
+																<option selected="selected" value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+															</select>
+														</td>
+														<td id="SUM5_1" class="padded"></td>
+														<td id="SUM5_2" class="padded"></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+
+								<!--Soul Reaper Skills-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Soul_Reaper_Skills')"><span class="padded_large">Soul Reaper Skills</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Soul_Reaper_Skills">
+											<table id="soulreapers" class="shadow">
+												<tbody>
+													<tr>
+														<td id="SRIP0_1" class="padded">Shadow Soul</td>
+														<td id="SRIP0_2" class="padded">
+															<select id="shadowSoul" style="width:65px;" onchange="StAllCalc()">
+																<option selected="selected" value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+															</select>
+														</td>
+														<td id="SRIP1_1" class="padded">Fairy Soul</td>
+														<td id="SRIP1_2" class="padded">
+															<select id="fairySoul" style="width:65px;" onchange="StAllCalc()">
+																<option selected="selected" value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td id="SRIP2_1" class="padded">Falcon Soul</td>
+														<td id="SRIP2_2" class="padded">
+															<select id="falconSoul" style="width:65px;" onchange="StAllCalc()">
+																<option selected="selected" value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+															</select>
+														</td>
+														<td id="SRIP3_1" class="padded">Golem Soul</td>
+														<td id="SRIP3_2" class="padded">
+															<select id="golemSoul" style="width:65px;" onchange="StAllCalc()">
+																<option selected="selected" value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td id="SRIP4_1" class="padded">Soul Division</td>
+														<td id="SRIP4_2" class="padded">
+															<select id="soulDivision" style="width:65px;" onchange="StAllCalc()">
+																<option selected="selected" value="0">0</option>
+																<option value="1">1</option>
+																<option value="2">2</option>
+																<option value="3">3</option>
+																<option value="4">4</option>
+																<option value="5">5</option>
+															</select>
+														</td>
+														<td id="SRIP5_1" class="padded"></td>
+														<td id="SRIP5_2" class="padded"></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							
+						</div>
+						
+						<!-- Items -->
+						<div class="d-sm-flex align-items-center justify-content-between mb-4">
+							<h1 class="h3 mb-0 text-gray-800">Items</h1>
+						</div>
+						
+						<div class="row">
+						
+							<!--Items-->
+							<div  class="padded_side" style="overflow-x:auto;max-width:80%">
+								<div class="card shadow mb-4">
+									<!-- Card Header -->
+									<div
+										class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+										<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Items')"><span class="padded_large">Items</span></h6>
+									</div>
+									<!-- Card Body -->
+									<div class="card-body" id="Items">
+										<span id="items">
+											<table class="shadow">
+												<tr>
+													<td id="aspdLabel" class="bgLtRow3 padded"></td>
+													<td id="aspdInput" class="bgLtRow1 padded"></td>
+													<td id="sesameLabel" class="bgLtRow3 padded"></td>
+													<td id="sesameInput" class="bgLtRow1 padded"></td>
+													<td id="fireLabel" class="bgLtRow3 padded"></td>
+													<td id="fireInput" class="bgLtRow1 padded"></td>
+													<td id="runeLabel" class="bgLtRow3 padded"></td>
+													<td id="runeInput" class="bgLtRow1 padded"></td>
+												</tr>
+												<tr>
+													<td id="strFoodLabel" class="bgLtRow4 padded"></td>
+													<td id="strFoodInput" class="bgLtRow2 padded"></td>
+													<td id="honeyLabel" class="bgLtRow4 padded"></td>
+													<td id="honeyInput" class="bgLtRow2 padded"></td>
+													<td id="coldLabel" class="bgLtRow4 padded"></td>
+													<td id="coldInput" class="bgLtRow2 padded"></td>
+													<td id="schwartzLabel" class="bgLtRow4 padded"></td>
+													<td id="schwartzInput" class="bgLtRow2 padded"></td>
+												</tr>
+												<tr>
+													<td id="agiFoodLabel" class="bgLtRow3 padded"></td>
+													<td id="agiFoodInput" class="bgLtRow1 padded"></td>
+													<td id="rainbowLabel" class="bgLtRow3 padded"></td>
+													<td id="rainbowInput" class="bgLtRow1 padded"></td>
+													<td id="thunderLabel" class="bgLtRow3 padded"></td>
+													<td id="thunderInput" class="bgLtRow1 padded"></td>
+													<td id="arunafeltzLabel" class="bgLtRow3 padded"></td>
+													<td id="arunafeltzInput" class="bgLtRow1 padded"></td>
+												</tr>
+												<tr>
+													<td id="vitFoodLabel" class="bgLtRow4 padded"></td>
+													<td id="vitFoodInput" class="bgLtRow2 padded"></td>
+													<td id="militarybLabel" class="bgLtRow4 padded"></td>
+													<td id="militarybInput" class="bgLtRow2 padded"></td>
+													<td id="earthLabel" class="bgLtRow4 padded"></td>
+													<td id="earthInput" class="bgLtRow2 padded"></td>
+													<td id="boucheLabel" class="bgLtRow4 padded"></td>
+													<td id="boucheInput" class="bgLtRow2 padded"></td>
+												</tr>
+												<tr>
+													<td id="intFoodLabel" class="bgLtRow3 padded"></td>
+													<td id="intFoodInput" class="bgLtRow1 padded"></td>
+													<td id="militarycLabel" class="bgLtRow3 padded"></td>
+													<td id="militarycInput" class="bgLtRow1 padded"></td>
+													<td id="celermineLabel" class="bgLtRow3 padded"></td>
+													<td id="celermineInput" class="bgLtRow1 padded"></td>
+													<td id="distilledLabel" class="bgLtRow3 padded"></td>
+													<td id="distilledInput" class="bgLtRow1 padded"></td>
+												</tr>
+												<tr>
+													<td id="dexFoodLabel" class="bgLtRow4 padded"></td>
+													<td id="dexFoodInput" class="bgLtRow2 padded"></td>
+													<td id="pinkLabel" class="bgLtRow4 padded"></td>
+													<td id="pinkInput" class="bgLtRow2 padded"></td>
+													<td id="vitataLabel" class="bgLtRow4 padded"></td>
+													<td id="vitataInput" class="bgLtRow2 padded"></td>
+													<td id="durianLabel" class="bgLtRow4 padded"></td>
+													<td id="durianInput" class="bgLtRow2 padded"></td>
+												</tr>
+												<tr>
+													<td id="lukFoodLabel" class="bgLtRow3 padded"></td>
+													<td id="lukFoodInput" class="bgLtRow1 padded"></td>
+													<td id="whiteLabel" class="bgLtRow3 padded"></td>
+													<td id="whiteInput" class="bgLtRow1 padded"></td>
+													<td id="increasehpLabel" class="bgLtRow3 padded"></td>
+													<td id="increasehpInput" class="bgLtRow1 padded"></td>
+													<td id="guaranaLabel" class="bgLtRow3 padded"></td>
+													<td id="guaranaInput" class="bgLtRow1 padded"></td>
+												</tr>
+												<tr>
+													<td id="luckyLabel" class="bgLtRow4 padded"></td>
+													<td id="luckyInput" class="bgLtRow2 padded"></td>
+													<td id="scrollLabel" class="bgLtRow4 padded"></td>
+													<td id="scrollInput" class="bgLtRow2 padded"></td>
+													<td id="increasespLabel" class="bgLtRow4 padded"></td>
+													<td id="increasespInput" class="bgLtRow2 padded"></td>
+													<td id="tyrLabel" class="bgLtRow4 padded"></td>
+													<td id="tyrInput" class="bgLtRow2 padded"></td>
+												</tr>
+												<tr>
+													<td id="resentmentLabel" class="bgLtRow3 padded"></td>
+													<td id="resentmentInput" class="bgLtRow1 padded"></td>
+													<td id="drowsinessLabel" class="bgLtRow3 padded"></td>
+													<td id="drowsinessInput" class="bgLtRow1 padded"></td>
+													<td id="abrasiveLabel" class="bgLtRow3 padded"></td>
+													<td id="abrasiveInput" class="bgLtRow1 padded"></td>
+													<td id="killerLabel" class="bgLtRow3 padded"></td>
+													<td id="killerInput" class="bgLtRow1 padded"></td>
+												</tr>
+												<tr>
+													<td id="manaPlusLabel" class="bgLtRow4 padded"></td>
+													<td id="manaPlusInput" class="bgLtRow2 padded"></td>
+													<td id="raydricArcherTransScrollLabel" class="bgLtRow4 padded"></td>
+													<td id="raydricArcherTransScrollInput" class="bgLtRow2 padded"></td>
+													<td id="mardukTransScrollLabel" class="bgLtRow4 padded"></td>
+													<td id="mardukTransScrollInput" class="bgLtRow2 padded"></td>
+													<td id="archmagePotionLabel" class="bgLtRow4 padded"></td>
+													<td id="archmagePotionInput" class="bgLtRow2 padded"></td>
+												</tr>
+												<tr>
+													<td id="superhumanSweetsLabel" class="bgLtRow3 padded"></td>
+													<td id="superhumanSweetsInput" class="bgLtRow1 padded"></td>	
+													<td id="mindPotionLabel" class="bgLtRow3 padded"></td>
+													<td id="mindPotionInput" class="bgLtRow1 padded"></td>
+													<td class="bgLtRow3 padded"></td>
+													<td class="bgLtRow1 padded"></td>
+													<td class="bgLtRow3 padded"></td>
+													<td class="bgLtRow1 padded"></td>
+													
+													<!-- //Invisible -->
+												</tr>
+												<tr style="display: none;">
+													<td id="holyElLabel" class="bgLtRow3 padded"></td>
+													<td id="holyElInput" class="bgLtRow1 padded"></td>
+													<td id="undeadElLabel" class="bgLtRow3 padded"></td>
+													<td id="undeadElInput" class="bgLtRow1 padded"></td>	
+													<td class="bgLtRow3 padded"></td>
+													<td class="bgLtRow1 padded"></td>
+												</tr>
+											</table>
+										</span>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						
+						<!-- Monster Combat Simulation -->
+						<div class="d-sm-flex align-items-center justify-content-between mb-4">
+							<h1 class="h3 mb-0 text-gray-800">Monster Combat Simulation</h1>
+						</div>
+							
+						<div class="row">
+						
+							<div>
+							
+								<!--Monster Information-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Monster_Information')"><span class="padded_large">Monster Information</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Monster_Information">
+											<table class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded">Monster</td>
+														<td class="padded">
+															<select id="B_Enemy" onchange="calc()">
+																<option value="578" selected="selected">[Player] (Lvl 150)</option><option value="144">Abysmal Knight (Lvl 122)</option><option value="408">Acidus (Blue) (Lvl 130)</option><option value="407">Acidus (Gold) (Lvl 130)</option><option value="462">Agav (Lvl 128)</option><option value="78">Aged Cornutus (Lvl 48)</option><option value="243">Aged Deviace (Lvl 60)</option><option value="383">Aged Hydra (Lvl 34)</option><option value="386">Aged Kukre (Lvl 42)</option><option value="389">Aged Marc (Lvl 56)</option><option value="441">Aged Marina (Lvl 42)</option><option value="442">Aged Marine Sphere (Lvl 51)</option><option value="443">Aged Marse (Lvl 47)</option><option value="444">Aged Merman (Lvl 60)</option><option value="566">Aged Obeaune (Lvl 53)</option><option value="567">Aged Phen (Lvl 52)</option><option value="568">Aged Plankton (Lvl 40)</option><option value="569">Aged Strouf (Lvl 61)</option><option value="570">Aged Swordfish (Lvl 57)</option><option value="571">Aged Vadon (Lvl 45)</option><option value="11">Alarm (Lvl 88)</option><option value="13">Alice (Lvl 100)</option><option value="432">Alicel (Lvl 115)</option><option value="433">Aliot (Lvl 112)</option><option value="431">Aliza (Lvl 112)</option><option value="12">Alligator (Lvl 57)</option><option value="10">Am Mut (Lvl 76)</option><option value="19">Ambernite (Lvl 19)</option><option value="333">Amon Ra (Lvl 69)</option><option value="7">Anacondaq (Lvl 100)</option><option value="412">Ancient Mimic (Lvl 112)</option><option value="42">Ancient Mummy (Lvl 114)</option><option value="542">Ancient Tree (Lvl 144)</option><option value="43">Ancient Worm (Lvl 83)</option><option value="18">Andre (Lvl 33)</option><option value="41">Angeling (Lvl 77)</option><option value="8">Anolian (Lvl 109)</option><option value="376">Anopheles (Lvl 95)</option><option value="14">Ant Egg (Lvl 28)</option><option value="17">Antonio (Lvl 10)</option><option value="555">Antler Scaraba (Lvl 136)</option><option value="553">Antler Scaraba Egg (Lvl 127)</option><option value="484">Anubis (Lvl 105)</option><option value="9">Apocalypse (Lvl 121)</option><option value="538">Aqua Elemental (Lvl 121)</option><option value="0">Arc Angeling (Lvl 84)</option><option value="382">Archdam (Lvl 119)</option><option value="1">Archer Skeleton (Lvl 50)</option><option value="5">Arclouze (Lvl 107)</option><option value="15">Argiope (Lvl 75)</option><option value="16">Argos (Lvl 47)</option><option value="362">Armeyer Dinze (Lvl 134)</option><option value="371">Assassin Cross Eremes (Lvl 160)</option><option value="6">Assaulter (Lvl 100)</option><option value="240">Aster (Lvl 50)</option><option value="450">Atroce (Lvl 113)</option><option value="520">Aunoe (Lvl 110)</option><option value="487">Baba Yaga (Lvl 87)</option><option value="189">Baby Desert Wolf (Lvl 14)</option><option value="339">Baby Hatii (Lvl 94)</option><option value="102">Baby Leopard (Lvl 68)</option><option value="574">Banaspaty (Lvl 85)</option><option value="477">Banshee (Lvl 130)</option><option value="522">Banshee Master (Lvl 118)</option><option value="228">Baphomet (Lvl 81)</option><option value="523">Baphomet (Unsealed) (Lvl 98)</option><option value="229">Baphomet Jr. (Lvl 57)</option><option value="415">Baroness of Retribution (Lvl 121)</option><option value="504">Barricades (estimate) (Lvl 1)</option><option value="218">Bathory (Lvl 86)</option><option value="565">Beelzebub (fly form) (Lvl 147)</option><option value="480">Beelzebub (true form) (Lvl 147)</option><option value="235">Beetle King (Lvl 55)</option><option value="397">Beholder (Lvl 120)</option><option value="521">Beholder Master (Lvl 106)</option><option value="239">Bigfoot (Lvl 29)</option><option value="99">Black Mushroom (Lvl 1)</option><option value="259">Blazer (Lvl 101)</option><option value="227">Bloody Butterfly (Lvl 94)</option><option value="253">Bloody Knight (Lvl 116)</option><option value="331">Bloody Murderer (Lvl 110)</option><option value="2">Blue Plant (Lvl 1)</option><option value="158">Boa (Lvl 18)</option><option value="564">Boitata (Lvl 93)</option><option value="275">Bongun (Lvl 59)</option><option value="467">Bow Guardian (Lvl 132)</option><option value="541">Bradium Golem (Lvl 133)</option><option value="404">Breeze (Lvl 92)</option><option value="257">Brilight (Lvl 71)</option><option value="575">Butoijo (Lvl 88)</option><option value="470">Byrogue (Lvl 135)</option><option value="82">Caramel (Lvl 25)</option><option value="134">Carat (Lvl 103)</option><option value="81">Cat O' Nine Tails (Lvl 79)</option><option value="80">Caterpillar (Lvl 84)</option><option value="367">Cecil Damon (Lvl 141)</option><option value="500">Cecil Damon (Lv99) (Lvl 1)</option><option value="576">Cendrawasih (Lvl 84)</option><option value="531">Centipede (Lvl 125)</option><option value="530">Centipede Larva (Lvl 118)</option><option value="585">Champion Chen (Lvl 160)</option><option value="181">Chepet (Lvl 42)</option><option value="79">Chimera (Lvl 70)</option><option value="183">Choco (Lvl 48)</option><option value="184">Chonchon (Lvl 5)</option><option value="94">Santa Gobin (Lvl 25)</option><option value="100">Clock (Lvl 81)</option><option value="582">Clown Alphoccio (Lvl 160)</option><option value="514">Cobalt Mineral (Lvl 113)</option><option value="103">Coco (Lvl 38)</option><option value="572">Comodo (Lvl 81)</option><option value="121">Condor (Lvl 12)</option><option value="430">Constant (Lvl 108)</option><option value="88">Cookie (Green) (Lvl 35)</option><option value="87">Cookie (Red) (Lvl 37)</option><option value="529">Cornus (Lvl 120)</option><option value="71">Cornutus (Lvl 48)</option><option value="72">Crab (Lvl 43)</option><option value="90">Cramp (Lvl 82)</option><option value="92">Creamy (Lvl 23)</option><option value="93">Creamy Fear (Lvl 77)</option><option value="581">Creator Flamel (Lvl 160)</option><option value="98">Cruiser (Lvl 41)</option><option value="558">Curupira (Lvl 68)</option><option value="417">Dame of Sentinel (Lvl 127)</option><option value="174">Dark Frame (Lvl 76)</option><option value="173">Dark Illusion (Lvl 96)</option><option value="175">Dark Lord (Lvl 96)</option><option value="537">Dark Pinguicula (Lvl 113)</option><option value="44">Dark Priest (Lvl 98)</option><option value="545">Dark Shadow (Lvl 147)</option><option value="413">Deathword (Lvl 114)</option><option value="195">Deleter (Earth) (Lvl 105)</option><option value="194">Deleter (Sky) (Lvl 105)</option><option value="187">Demon Pungus (Lvl 91)</option><option value="191">Deniro (Lvl 31)</option><option value="188">Desert Wolf (Lvl 103)</option><option value="420">Despero of Thanatos (Lvl 129)</option><option value="411">Detardeurus (Lvl 135)</option><option value="192">Deviace (Lvl 60)</option><option value="340">Deviling (Lvl 66)</option><option value="193">Deviruchi (Lvl 93)</option><option value="186">Diabolic (Lvl 104)</option><option value="392">Dimik (Orange) (Lvl 116)</option><option value="393">Dimik (Red) (Lvl 116)</option><option value="391">Dimik (Blue) (Lvl 116)</option><option value="390">Dimik (Green) (Lvl 116)</option><option value="330">Disguise (Lvl 103)</option><option value="205">Dokebi (Lvl 68)</option><option value="548">Dolomedes (Lvl 132)</option><option value="419">Dolor of Thanatos (Lvl 129)</option><option value="206">Doppelganger (Lvl 77)</option><option value="536">Draco (Lvl 114)</option><option value="535">Draco Egg (Lvl 101)</option><option value="207">Dracula (Lvl 75)</option><option value="409">Dragon Egg (Lvl 119)</option><option value="209">Dragon Fly (Lvl 47)</option><option value="208">Dragon Tail (Lvl 86)</option><option value="213">Drainliar (Lvl 47)</option><option value="212">Drake (Lvl 91)</option><option value="211">Driller (Lvl 65)</option><option value="214">Drops (Lvl 2)</option><option value="448">Drosera (Lvl 101)</option><option value="210">Dryad (Lvl 68)</option><option value="329">Dullahan (Lvl 108)</option><option value="180">Dumpling Child (Lvl 60)</option><option value="544">Duneyrr (Lvl 135)</option><option value="177">Dustiness (Lvl 62)</option><option value="461">Echio (Lvl 126)</option><option value="37">Eclipse (Lvl 31)</option><option value="38">Eddga (Lvl 65)</option><option value="34">Eggyra (Lvl 53)</option><option value="357">Egnigem Cenia (Lvl 136)</option><option value="363">Egnigem Cenia (MVP) (Lvl 141)</option><option value="39">Elder (Lvl 92)</option><option value="40">Elder Willow (Lvl 34)</option><option value="547">Emperium (Lvl 90)</option><option value="145">Enchanted Peach Tree (Lvl 92)</option><option value="509">Entweihen Knothen (Lvl 90)</option><option value="365">Eremes Guile (Lvl 140)</option><option value="498">Eremes Guile (Lv99) (Lvl 1)</option><option value="359">Errende Ebecee (Lvl 133)</option><option value="22">Evil Druid (Lvl 80)</option><option value="198">Evil Nymph (Lvl 97)</option><option value="101">Evil Snake Lord (Lvl 105)</option><option value="35">Executioner (Lvl 101)</option><option value="36">Explosion (Lvl 100)</option><option value="242">Fabre (Lvl 6)</option><option value="247">False Angel (Lvl 105)</option><option value="479">Fallen Bishop Hibram (Lvl 138)</option><option value="244">Familiar (Lvl 24)</option><option value="519">Fanat (Lvl 120)</option><option value="201">Female Thief Bug (Lvl 28)</option><option value="405">Ferus (Green) (Lvl 126)</option><option value="406">Ferus (Red) (Lvl 126)</option><option value="140">Firelock Soldier (Lvl 88)</option><option value="473">Flame Skull (Lvl 121)</option><option value="261">Flora (Lvl 59)</option><option value="255">Freezer (Lvl 94)</option><option value="258">Frilldora (Lvl 57)</option><option value="436">Frus (Lvl 128)</option><option value="69">Gajomart (Lvl 81)</option><option value="447">Galion (Lvl 100)</option><option value="75">Galapago (Lvl 45)</option><option value="62">Gargoyle (Lvl 100)</option><option value="453">Gazeti (Lvl 106)</option><option value="381">Gemini-S58 (Lvl 135)</option><option value="136">Geographer (Lvl 73)</option><option value="104">Ghostring (Lvl 90)</option><option value="85">Ghoul (Lvl 61)</option><option value="138">Giant Hornet (Lvl 82)</option><option value="137">Giant Spider (Lvl 85)</option><option value="83">Giant Whisper (Lvl 66)</option><option value="328">Gibbet (Lvl 105)</option><option value="67">Giearth (Lvl 42)</option><option value="77">Gig (Lvl 100)</option><option value="463">Gloom Under Night (Lvl 139)</option><option value="105">Goat (Lvl 80)</option><option value="108">Goblin (Axe) (Lvl 44)</option><option value="110">Goblin (Dagger) (Lvl 48)</option><option value="109">Goblin (Flail) (Lvl 44)</option><option value="111">Goblin (Hammer) (Lvl 49)</option><option value="112">Goblin (Morning Star) (Lvl 56)</option><option value="113">Goblin Archer (Lvl 55)</option><option value="115">Goblin Leader (Lvl 55)</option><option value="114">Goblin Steamrider (Lvl 66)</option><option value="45">Golden Thief Bug (Lvl 65)</option><option value="490">Gopinich (Lvl 97)</option><option value="106">Golem (Lvl 61)</option><option value="91">Grand Peco (Lvl 75)</option><option value="196">Greatest General (Lvl 55)</option><option value="398">Green Maiden (Lvl 82)</option><option value="295">Green Plant (Lvl 1)</option><option value="396">Gremlin (Lvl 118)</option><option value="96">Gryphon (Lvl 105)</option><option value="95">Grizzly (Lvl 66)</option><option value="403">Grove (Lvl 55)</option><option value="503">Guardian Stone (estimate) (Lvl 1)</option><option value="97">Gullinbrusti (Lvl 89)</option><option value="579">Gypsy Trentini (Lvl 160)</option><option value="534">Hardrock Mammoth (Lvl 137)</option><option value="219">Harpy (Lvl 83)</option><option value="225">Hatii (Lvl 98)</option><option value="561">Headless Mule (Lvl 80)</option><option value="234">Heater (Lvl 98)</option><option value="515">Heavy Metaling (Lvl 107)</option><option value="517">Hell Apocalypse (Lvl 121)</option><option value="474">Hell Poodle (Lvl 115)</option><option value="483">Hellion Revenant (Lvl 88)</option><option value="318">Hermit Plant (Lvl 90)</option><option value="221">High Orc (Lvl 81)</option><option value="372">High Priest Margaretha (Lvl 160)</option><option value="374">High Wizard Kathryne (Lvl 160)</option><option value="379">Hill Wind (Lvl 101)</option><option value="378">Hill Wind (Spear) (Lvl 101)</option><option value="527">Hillslion (Lvl 123)</option><option value="327">Heirozoist (Lvl 102)</option><option value="269">Hode (Lvl 63)</option><option value="458">Hodremlin (Lvl 122)</option><option value="377">Holden (Lvl 85)</option><option value="273">Horn (Lvl 32)</option><option value="552">Horn Scaraba (Lvl 134)</option><option value="550">Horn Scaraba Egg (Lvl 126)</option><option value="270">Hornet (Lvl 11)</option><option value="274">Horong (Lvl 66)</option><option value="369">Howard Alt-Eisen (Lvl 142)</option><option value="502">Howard Alt-Eisen (Lv99) (Lvl 1)</option><option value="232">Hunter Fly (Lvl 63)</option><option value="241">Hydra (Lvl 34)</option><option value="410">Hydrolancer (Lvl 121)</option><option value="563">Iara (Lvl 79)</option><option value="455">Ice Titan (Lvl 110)</option><option value="451">Iceicle (Lvl 100)</option><option value="472">Ifrit (Lvl 146)</option><option value="466">Imp (Lvl 129)</option><option value="491">Incarnation of Morroc (Angel) (Lvl 132)</option><option value="492">Incarnation of Morroc (Golem) (Lvl 132)</option><option value="493">Incarnation of Morroc (Human) (Lvl 133)</option><option value="494">Incarnation of Morroc (Spirit) (Lvl 134)</option><option value="23">Incubus (Lvl 120)</option><option value="24">Injustice (Lvl 95)</option><option value="513">Iron Fist (Lvl 47)</option><option value="459">Isilla (Lvl 124)</option><option value="20">Isis (Lvl 59)</option><option value="560">Jaguar (Lvl 71)</option><option value="139">Jakk (Lvl 63)</option><option value="338">Jing Guai (Lvl 80)</option><option value="141">Joker (Lvl 90)</option><option value="341">Kaho (Lvl 98)</option><option value="70">Kapha (Lvl 83)</option><option value="74">Karakasa (Lvl 72)</option><option value="468">Kasa (Lvl 135)</option><option value="368">Kathryne Keyron (Lvl 141)</option><option value="501">Katrinn Keyron (Lv99) (Lvl 1)</option><option value="360">Kavach Icarus (Lvl 135)</option><option value="66">Khalitzburg (Lvl 118)</option><option value="434">Kiel (Lvl 90)</option><option value="435">Kiel-D-01 (Lvl 125)</option><option value="84">Killer Mantis (Lvl 91)</option><option value="465">Knocker (Lvl 126)</option><option value="116">Kobold (Axe) (Lvl 107)</option><option value="117">Kobold (Hammer) (Lvl 102)</option><option value="118">Kobold (Morning Star) (Lvl 101)</option><option value="119">Kobold Archer (Lvl 108)</option><option value="120">Kobold Leader (Lvl 112)</option><option value="342">Kraben (Lvl 70)</option><option value="586">Kraken (Lvl 124)</option><option value="456">Ktullanux (Lvl 98)</option><option value="518">Kublin (Lvl 1)</option><option value="86">Kukre (Lvl 42)</option><option value="414">Lady Solace (Lvl 123)</option><option value="428">Lady Tanee (Lvl 80)</option><option value="361">Laurell Weinder (Lvl 133)</option><option value="308">Lava Golem (Lvl 103)</option><option value="345">Leaf Cat (Lvl 64)</option><option value="573">Leak (Lvl 94)</option><option value="485">Les (Lvl 82)</option><option value="315">Leib Olmai (Lvl 87)</option><option value="326">Loli Ruri (Lvl 109)</option><option value="370">Lord Knight Seyren (Lvl 160)</option><option value="332">Lord of the Dead (Lvl 94)</option><option value="526">Luciola Vespa (Lvl 109)</option><option value="324">Lude (Lvl 101)</option><option value="311">Lunatic (Lvl 3)</option><option value="418">Maero of Thanatos (Lvl 129)</option><option value="464">Magmaring (Lvl 110)</option><option value="223">Magnolia (Lvl 53)</option><option value="107">Majoruros (Lvl 107)</option><option value="200">Male Thief Bug (Lvl 30)</option><option value="290">Mandragora (Lvl 13)</option><option value="289">Mantis (Lvl 65)</option><option value="334">Mao Guai (Lvl 89)</option><option value="286">Marc (Lvl 56)</option><option value="288">Marduk (Lvl 73)</option><option value="366">Margaretha Sorin (Lvl 140)</option><option value="499">Margaretha Sorin (Lv99) (Lvl 1)</option><option value="278">Marin (Lvl 37)</option><option value="284">Marina (Lvl 42)</option><option value="285">Marine Sphere (Lvl 51)</option><option value="283">Marionette (Lvl 90)</option><option value="287">Marse (Lvl 47)</option><option value="277">Martin (Lvl 39)</option><option value="276">Martyr (Lvl 58)</option><option value="279">Mastering (Lvl 42)</option><option value="375">Mastersmith Howard (Lvl 160)</option><option value="489">Mavka (Lvl 84)</option><option value="281">Maya (Lvl 55)</option><option value="282">Maya Purple (Lvl 81)</option><option value="306">Medusa (Lvl 102)</option><option value="303">Megalith (Lvl 65)</option><option value="304">Megalodon (Lvl 46)</option><option value="422">Memory of Thanatos (Lvl 99)</option><option value="230">Merman (Lvl 60)</option><option value="346">Metaling (Lvl 81)</option><option value="305">Metaller (Lvl 55)</option><option value="335">Mi Gao (Lvl 83)</option><option value="298">Mimic (Lvl 59)</option><option value="352">Mineral (Lvl 96)</option><option value="296">Mini Demon (Lvl 117)</option><option value="297">Minorous (Lvl 58)</option><option value="294">Mistress (Lvl 78)</option><option value="416">Mistress of Shelter (Lvl 125)</option><option value="299">Miyabi Doll (Lvl 85)</option><option value="185">Mobster (Lvl 58)</option><option value="394">Monemus (Lvl 88)</option><option value="31">Moonlight Flower (Lvl 79)</option><option value="301">Muka (Lvl 23)</option><option value="280">Mummy (Lvl 55)</option><option value="302">Munak (Lvl 58)</option><option value="449">Muscipular (Lvl 105)</option><option value="300">Mutant Dragonoid (Lvl 65)</option><option value="292">Myst (Lvl 49)</option><option value="293">Myst Case (Lvl 39)</option><option value="291">Mysteltainn (Lvl 130)</option><option value="532">Naga (Lvl 117)</option><option value="510">Naght Sieger (Lvl 99)</option><option value="478">Necromancer (Lvl 133)</option><option value="524">Nepenthes (Lvl 114)</option><option value="217">Nereid (Lvl 98)</option><option value="546">Nidhoggur's Shadow (Lvl 117)</option><option value="215">Nightmare (Lvl 69)</option><option value="216">Nightmare Terror (Lvl 107)</option><option value="89">Ninetail (Lvl 72)</option><option value="401">Novus (Red) (Lvl 84)</option><option value="402">Novus (Yellow) (Lvl 90)</option><option value="348">Noxious (Lvl 87)</option><option value="60">Obeaune (Lvl 53)</option><option value="351">Obsidian (Lvl 97)</option><option value="421">Odium of Thanatos (Lvl 129)</option><option value="48">Ogretooth (Lvl 114)</option><option value="49">Orc Archer (Lvl 78)</option><option value="429">Orc Baby (Lvl 43)</option><option value="54">Orc Hero (Lvl 50)</option><option value="55">Orc Lady (Lvl 45)</option><option value="56">Orc Lord (Lvl 55)</option><option value="51">Orc Skeleton (Lvl 53)</option><option value="50">Orc Warrior (Lvl 44)</option><option value="52">Orc Zombie (Lvl 51)</option><option value="57">Osiris (Lvl 68)</option><option value="47">Owl Baron (Lvl 120)</option><option value="46">Owl Duke (Lvl 92)</option><option value="580">Paladin Randel (Lvl 160)</option><option value="233">Panzer Goblin (Lvl 52)</option><option value="246">Parasite (Lvl 76)</option><option value="224">Pasana (Lvl 79)</option><option value="262">Pecopeco (Lvl 25)</option><option value="263">Pecopeco Egg (Lvl 7)</option><option value="265">Penomena (Lvl 85)</option><option value="220">Permeter (Lvl 90)</option><option value="264">Pest (Lvl 89)</option><option value="251">Petite (Earth) (Lvl 86)</option><option value="250">Petite (Sky) (Lvl 79)</option><option value="245">Pharaoh (Lvl 85)</option><option value="248">Phen (Lvl 52)</option><option value="249">Phendark (Lvl 102)</option><option value="256">Phreeoni (Lvl 71)</option><option value="539">Phylla (Lvl 139)</option><option value="238">Picky (Lvl 9)</option><option value="149">Picky (Shell) (Lvl 10)</option><option value="236">Piere (Lvl 32)</option><option value="525">Pinguicula (Lvl 105)</option><option value="562">Piranha (Lvl 75)</option><option value="222">Pirate Skeleton (Lvl 48)</option><option value="350">Pitman (Lvl 90)</option><option value="254">Plankton (Lvl 40)</option><option value="423">Plasma (Blue) (Lvl 115)</option><option value="425">Plasma (Green) (Lvl 116)</option><option value="426">Plasma (Purple) (Lvl 117)</option><option value="424">Plasma (Red) (Lvl 118)</option><option value="427">Plasma (Yellow) (Lvl 119)</option><option value="267">Poison Spore (Lvl 26)</option><option value="53">Poison Toad (Lvl 87)</option><option value="271">Poporing (Lvl 30)</option><option value="347">Porcellio (Lvl 85)</option><option value="272">Poring (Lvl 1)</option><option value="231">Punk (Lvl 82)</option><option value="583">Professor Celia (Lvl 160)</option><option value="252">Pupa (Lvl 4)</option><option value="557">Queen Scaraba (Lvl 140)</option><option value="325">Quve (Lvl 100)</option><option value="356">RSX-0806 (Lvl 100)</option><option value="400">Rafflesia (Lvl 86)</option><option value="577">Rafflesia Arnoldi (Lvl 80)</option><option value="475">Ragged Zombie (Lvl 123)</option><option value="317">Raggler (Lvl 48)</option><option value="543">Rata (Lvl 131)</option><option value="556">Rake Horn Scaraba (Lvl 139)</option><option value="554">Rake Horn Scaraba Egg (Lvl 128)</option><option value="313">Raydric (Lvl 115)</option><option value="314">Raydric Archer (Lvl 82)</option><option value="3">Red Mushroom (Lvl 1)</option><option value="4">Red Plant (Lvl 1)</option><option value="380">Remover (Lvl 121)</option><option value="316">Requiem (Lvl 71)</option><option value="540">Rhyncho (Lvl 139)</option><option value="309">Rideword (Lvl 74)</option><option value="320">Rocker (Lvl 15)</option><option value="321">Roda Frog (Lvl 13)</option><option value="319">Rotar Zairo (Lvl 48)</option><option value="446">Roween (Lvl 95)</option><option value="310">Rybio (Lvl 98)</option><option value="163">Sageworm (Lvl 70)</option><option value="471">Salamander (Lvl 138)</option><option value="61">Samurai Spectre (Lvl 100)</option><option value="131">Sandman (Lvl 61)</option><option value="130">Santa Poring (Lvl 3)</option><option value="125">Sasquatch (Lvl 72)</option><option value="495">Satan Morroc (Lvl 151)</option><option value="127">Savage (Lvl 59)</option><option value="128">Savage Babe (Lvl 14)</option><option value="150">Scorpion (Lvl 16)</option><option value="133">Sea Otter (Lvl 48)</option><option value="58">Seal (Lvl 47)</option><option value="460">Seeker (Lvl 124)</option><option value="364">Seyren Windsor (Lvl 142)</option><option value="497">Seyron Windsor (Lv99) (Lvl 1)</option><option value="59">Shellfish (Lvl 50)</option><option value="68">Shining Plant (Lvl 1)</option><option value="73">Shinobi (Lvl 95)</option><option value="122">Sidewinder (Lvl 70)</option><option value="452">Siroma (Lvl 98)</option><option value="438">Skeggiold (Black) (Lvl 131)</option><option value="511">Skeggiold (Black) Slave (Lvl 1)</option><option value="439">Skeggiold (Blue) (Lvl 131)</option><option value="512">Skeggiold (Blue) Slave (Lvl 1)</option><option value="147">Skel Prisoner (Lvl 91)</option><option value="148">Skel Worker (Lvl 44)</option><option value="146">Skeleton (Lvl 27)</option><option value="135">Skeleton General (Lvl 88)</option><option value="437">Skogul (Lvl 126)</option><option value="162">Sleeper (Lvl 81)</option><option value="161">Smokie (Lvl 29)</option><option value="373">Sniper Cecil (Lvl 160)</option><option value="454">Snowier (Lvl 103)</option><option value="167">Sohee (Lvl 64)</option><option value="169">Soldier Skeleton (Lvl 34)</option><option value="168">Solider (Lvl 92)</option><option value="160">Spore (Lvl 18)</option><option value="159">Spring Rabbit (Lvl 88)</option><option value="151">Stainer (Lvl 21)</option><option value="152">Stalactic Golem (Lvl 68)</option><option value="584">Stalker Gertie (Lvl 160)</option><option value="445">Stapo (Lvl 95)</option><option value="153">Steel Chonchon (Lvl 48)</option><option value="155">Stem Worm (Lvl 84)</option><option value="154">Sting (Lvl 104)</option><option value="260">Stone Shooter (Lvl 64)</option><option value="156">Stormy Knight (Lvl 92)</option><option value="157">Strauf (Lvl 61)</option><option value="123">Succubus (Lvl 119)</option><option value="469">Sword Guardian (Lvl 133)</option><option value="166">Swordfish (Lvl 57)</option><option value="344">Tamruan (Lvl 73)</option><option value="343">Tao Gunka (Lvl 110)</option><option value="197">Taoist Hermit (Lvl 96)</option><option value="179">Tarou (Lvl 22)</option><option value="528">Tatacho (Lvl 128)</option><option value="355">Teddy Bear (Lvl 91)</option><option value="533">Tendrillion (Lvl 126)</option><option value="124">Tengu (Lvl 98)</option><option value="178">Thara Frog (Lvl 40)</option><option value="21">The Paper (Lvl 97)</option><option value="199">Thief Bug (Lvl 21)</option><option value="202">Thiefbug Egg (Lvl 20)</option><option value="506">Thorny Skeleton (Lvl 89)</option><option value="507">Thorn of Magic (Lvl 89)</option><option value="508">Thorn of Purification (Lvl 89)</option><option value="505">Thorn of Recovery (Lvl 89)</option><option value="203">Toad (Lvl 27)</option><option value="559">Toucan (Lvl 70)</option><option value="204">Tower Keeper (Lvl 90)</option><option value="132">Tri Joint (Lvl 66)</option><option value="482">Tristan III (Lvl 1)</option><option value="176">Turtle General (Lvl 110)</option><option value="354">Ungoliant (Lvl 94)</option><option value="551">Uni-horn Scaraba (Lvl 130)</option><option value="549">Uni-horn Scaraba Egg (Lvl 125)</option><option value="488">Uzhas (Lvl 85)</option><option value="226">Vadon (Lvl 45)</option><option value="126">Vegabond Wolf (Lvl 93)</option><option value="481">Valkyrie (Lvl 141)</option><option value="440">Valkyrie Randgris (Lvl 141)</option><option value="457">Vanberk (Lvl 123)</option><option value="387">Venatu (Orange) (Lvl 113)</option><option value="384">Venatu (Purple) (Lvl 113)</option><option value="385">Venatu (Blue) (Lvl 113)</option><option value="388">Venatu (Green) (Lvl 113)</option><option value="349">Venomous (Lvl 87)</option><option value="266">Verit (Lvl 52)</option><option value="395">Vesper (Lvl 128)</option><option value="25">Violy (Lvl 118)</option><option value="237">Vitata (Lvl 35)</option><option value="268">Vocal (Lvl 18)</option><option value="129">Wanderer (Lvl 120)</option><option value="353">Waste Stove (Lvl 92)</option><option value="358">Wikebine Tres (Lvl 132)</option><option value="26">Whisper (Lvl 34)</option><option value="143">White Plant (Lvl 1)</option><option value="399">White Lady (Lvl 97)</option><option value="323">Wild Rose (Lvl 70)</option><option value="27">Willow (Lvl 8)</option><option value="28">Wind Ghost (Lvl 80)</option><option value="65">WoE Guardian (Bow) (Lvl 1)</option><option value="63">WoE Guardian (Master) (Lvl 1)</option><option value="64">WoE Guardian (Soldier) (Lvl 1)</option><option value="33">Wolf (Lvl 45)</option><option value="486">Wood Goblin (Lvl 81)</option><option value="32">Wooden Golem (Lvl 72)</option><option value="30">Wootan Fighter (Lvl 67)</option><option value="29">Wootan Shooter (Lvl 67)</option><option value="322">Wormtail (Lvl 17)</option><option value="496">Wounded Morroc (Lvl 151)</option><option value="312">Wraith (Lvl 77)</option><option value="190">Wraith Dead (Lvl 86)</option><option value="337">Yao Jun (Lvl 87)</option><option value="76">Yellow Plant (Lvl 1)</option><option value="307">Yoyo (Lvl 38)</option><option value="516">Zakudam (Lvl 115)</option><option value="142">Zealtous (Lvl 105)</option><option value="164">Zenorc (Lvl 54)</option><option value="165">Zerom (Lvl 70)</option><option value="336">Zhu Po Long (Lvl 82)</option><option value="182">Zipper Bear (Lvl 90)</option><option value="170">Zombie (Lvl 17)</option><option value="172">Zombie Master (Lvl 92)</option><option value="171">Zombie Prisoner (Lvl 89)</option><option value="476">Zombie Slaughter (Lvl 124)</option>
+															</select>
+														</td>
+														<td class="padded" id="nm039">BaseExp</td>
+														<td class="padded" id="B_16"><font color="BLUE"><b>1</b></font></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm038">HP</td>
+														<td class="padded" id="B_6">40000</td>
+														<td class="padded" id="nm042">JobExp</td>
+														<td class="padded" id="B_17"><font color="BLUE"><b>1</b></font></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm040">ATK</td>
+														<td class="padded">
+															<span id="B_12">378</span>
+															<span id="nm041">&nbsp;~ </span>
+															<span id="B_13">447</span>
+														</td>
+														<td class="padded" id="nm044">Race</td>
+														<td class="padded" id="B_2">Demi-Human</td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm043">DEF</td>
+														<td class="padded">
+															<span id="B_23">200</span>
+															<span id="B_AA"> + </span>
+															<span id="B_14">300</span>
+															<span id="B_AC"></span>
+															<span id="B_24"></span>
+														</td>
+														<td class="padded" id="nm046">Element</td>
+														<td class="padded" id="B_3">Neutral 1</td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm045">MDEF</td>
+														<td class="padded">
+															<span id="B_25">100</span>
+															<span id="B_AB"> + </span>
+															<span id="B_15">15</span>
+														</td>
+														<td class="padded" id="nm047">Perfect Hit</td>
+														<td class="padded" id="B_21"><font color="RED"><b>470</b></font></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm048">Size</td>
+														<td class="padded" id="B_4">Medium</td>
+														<td class="padded" id="nm049">95% Dodge</td>
+														<td class="padded" id="B_22"><font color="RED"><b>453</b></font></td>
+													</tr>
+													<!-- // -->
+													<tr>
+														<td class="padded" id="nm067">Green Aura</td>
+														<td class="padded" id="GreenAura"><input type="checkbox" name="B_GRENEAURA" onclick="ToggleMonsterBuff()"></td>
+														<td class="padded" id="nm068">Monster Type</td>
+														<td class="padded" id="MonsterType"></td>
+													</tr>
+													<!-- // -->
+													<tr>
+														<td class="padded" colspan="4">
+															<div>
+																By Place:&nbsp;
+																<select name="ENEMY_SORT2" onchange="EnemySort()|calc()">
+																	<option value="0" selected="selected">All Maps</option><option value="1">Prontera Fields</option><option value="2">Prontera Culvert</option><option value="3">Labyrinth Forest</option><option value="4">Undersea Tunnel</option><option value="5">Morocc Fields</option><option value="6">Pyramid Dungeon</option><option value="7">Sphinx Dungeon</option><option value="8">Ant Hell</option><option value="9">Geffen Fields</option><option value="10">Geffen Dungeon</option><option value="11">Geffenia</option><option value="12">Orc Dungeon</option><option value="13">Glast Heim</option><option value="14">Glast Heim Lower</option><option value="15">Poring Island</option><option value="16">Payon Fields</option><option value="17">Payon Cave</option><option value="18">Sunken Ship</option><option value="19">Mjolnir Fields</option><option value="20">Mjolnir Dead Pit</option><option value="21">Clock Tower</option><option value="22">Toy Factory</option><option value="23">Comodo Fields</option><option value="24">Comodo Dungeon</option><option value="25">Umbala Fields</option><option value="26">Umbala Dungeon</option><option value="27">Nifflheim Fields</option><option value="28">Guild Dungeons Baldur</option><option value="29">Guild Dungeons Luina</option><option value="30">Guild Dungeons Valkyrie</option><option value="31">Guild Dungeons Britoniah</option><option value="32">Turtle Dungeon</option><option value="33">Amatsu</option><option value="34">Kunlun</option><option value="35">Louyang</option><option value="36">Ayotaya</option><option value="37">Juno Fields</option><option value="38">Magma Dungeon</option><option value="39">Doll Factory</option><option value="40">Einbroch Fields</option><option value="41">Mine Dungeon</option><option value="42">Lighthalzen Fields</option><option value="43">Somatology Laboratory</option><option value="44">Ruins of Juperos</option><option value="45">Hugel Fields</option><option value="46">Abyss Lake</option><option value="47">Thanatos Tower</option><option value="48">Odin Temple</option><option value="49">Rachel Fields</option><option value="50">Rachel Sanctuary</option><option value="51">Ice Dungeon</option><option value="52">Veins Fields</option><option value="53">Thor Volcano</option><option value="54">Nameless Island</option><option value="55">Moscovia</option><option value="56">Between Dimensions</option><option value="57">Guild Dungeons (Juno)</option><option value="58">Guild Dungeons (Rachel)</option><option value="59">Endless Tower</option><option value="60">Another world</option><option value="61">Nidhoggur Dungeon</option><option value="62">Outskirts of Kamidal Mountain</option><option value="63">Kamidal Tunnel</option><option value="64">Scaraba Hall</option><option value="65">Brasilis Field</option><option value="66">Brasilis Dungeon</option><option value="67">Overlook Water Dungeon</option><option value="68">Dewata</option>
+																	</select>
+																&nbsp;Sort:&nbsp;
+																<select name="ENEMY_SORT" onchange="EnemySort()|calc()">
+																	<option value="0" selected="selected">Alphabetical</option><option value="1">By Element</option><option value="2">By Race</option><option value="3">Base Level</option><option value="4">Perfect (100%) HIT</option><option value="5">95% Flee</option><option value="6">By Base Exp</option><option value="7">By Job Exp</option><option value="8">By Max Atk</option>
+																</select>
+															</div>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<!--Monster Debuffs-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Monster_Debuffs')"><span class="padded_large">Monster Debuffs</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Monster_Debuffs">
+											<table class="shadow">
+												<span id="MonsterDebuffs">
+												</span>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<!--Miscellaneous Effects-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Misc_Effects_Battle')"><span class="padded_large">Miscellaneous Effects</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Misc_Effects_Battle">
+											<span id="battleEffects">
+												<table class="shadow">
+													<tr>
+														<td id="vipLabel" class="bgLtRow4 padded"></td>
+														<td id="vipInput" class="bgLtRow2 padded"></td>
+														<td id="jobManualLabel" class="bgLtRow3 padded"></td>
+														<td id="jobManualInput" class="bgLtRow1 padded"></td>
+													</tr><tr>
+														<td id="baseManualLabel" class="bgLtRow3 padded"></td>
+														<td id="baseManualInput" class="bgLtRow1 padded"></td>
+														<td id="serverExpLabel" class="bgLtRow4 padded"></td>
+														<td id="serverExpInput" class="bgLtRow2 padded"></td>
+													</tr><tr>
+														<td id="partyCountLabel" class="bgLtRow3 padded"></td>
+														<td id="partyCountInput" class="bgLtRow1 padded"></td>
+														<td id="tapBonusLabel" class="bgLtRow3 padded"></td>
+														<td id="tapBonusInput" class="bgLtRow1 padded"></td>
+													</tr><tr>
+														<td id="specEnvLabel" class="bgLtRow4 padded"></td>
+														<td id="specEnvInput" class="bgLtRow2 padded"></td>
+														<td id="investmentLabel" class="bgLtRow4 padded"></td>
+														<td id="investmentInput" class="bgLtRow2 padded"></td>
+													</tr><tr>
+														<td id="minDelayLabel" class="bgLtRow3 padded"></td>
+														<td id="minDelayInput" class="bgLtRow1 padded"></td>
+														<td class="bgLtRow3 padded"></td>
+														<td class="bgLtRow1 padded"></td>
+													</tr>
+												</table>
+											</span>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							
+							<div>
+							
+								<!--Combat Results-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Combat_Results')"><span class="padded_large">Combat Results</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Combat_Results">
+											<table class="shadow">
+												<tbody>
+													<tr>
+														<td class="padded">
+															<select name="A_ActiveSkill" onchange="ClickActiveSkill()">
+															</select>
+															<select name="A_ActiveSkillLV" style="width:50px; visibility:hidden;">
+															</select>
+															<br/><input id="beta"type="checkbox"><label for="beta">Use beta formula</label>
+															<span id="AASkillName"></span>&nbsp;<span id="AASkill"></span>
+															<span id="AASkillName2"></span>&nbsp;<span id="AASkill2"></span>
+															<span id="AASkillName3"></span>&nbsp;<span id="AASkill3"></span>
+															<span id="AASkillName4"></span>&nbsp;<span id="AASkill4"></span>
+														</td>
+														<td class="padded">
+															<input id="ID_X2" value="Calculate" onclick="calc()" type="button">
+														</td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm053"></td>
+														<td class="padded" id="BattleHIT"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm054"></td>
+														<td class="padded" id="BattleFLEE"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="CRIATKname"></td>
+														<td class="padded" id="CRIATK"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="CRInumname"></td>
+														<td class="padded" id="CRInum"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="bSUBname"></td>
+														<td class="padded" id="bSUB"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="bSUB2name"><br></td>
+														<td class="padded" id="bSUB2"><br></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm055"></td>
+														<td class="padded" id="strID_0"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm056"></td>
+														<td class="padded" id="strID_1"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm057"></td>
+														<td class="padded" id="strID_2"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm058"></td>
+														<td class="padded" id="AveSecondATK"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm059"></td>
+														<td class="padded" id="MinATKnum"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm060"></td>
+														<td class="padded" id="AveATKnum"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm061"></td>
+														<td class="padded" id="MaxATKnum"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm062"></td>
+														<td class="padded" id="BattleTime"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm063"></td>
+														<td class="padded" id="AtkBaseExp"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm064"></td>
+														<td class="padded" id="AtkJobExp"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm067">
+															Enemy Skill: 
+															<select name="A_ActiveSkill_en" onchange="ClickMonsterSkill(false)">
+															</select>
+														</td>
+														<td class="padded" id="B_en_SKILL">
+															<select name="A_ActiveSkillLV_en" style="visibility:hidden;" onchange="ClickMonsterSkill(true)">
+															</select>
+														</td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm065"></td>
+														<td class="padded" id="B_AveAtk"></td>
+													</tr>
+													<tr>
+														<td class="padded" id="nm066">)</td>
+														<td class="padded" id="B_Ave2Atk"></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								
+								<!--Monster Buffs-->
+								<div  class="padded_side">
+									<div class="card shadow mb-4">
+										<!-- Card Header -->
+										<div
+											class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+											<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Monster_Buffs')"><span class="padded_large">Monster Buffs</span></h6>
+										</div>
+										<!-- Card Body -->
+										<div class="card-body" id="Monster_Buffs">
+											<span id="MonsterBuffs">
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6824539470557939"
+     crossorigin="anonymous"></script>
+<!-- lower_ads -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6824539470557939"
+     data-ad-slot="8250308300"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+						</div>
+						<!-- Exp Scaler -->
+						<div class="d-sm-flex align-items-center justify-content-between mb-4">
+							<h1 class="h3 mb-0 text-gray-800">Exp Scaler</h1>
+						</div>
+
+						<div class="row">
+							
+							<!--Exp Scaler-->
+							<div  class="padded_side">
+								<div class="card shadow mb-4">
+									<!-- Card Header -->
+									<div
+										class="card-header d-flex flex-row align-items-center justify-content-between head_bg">
+										<h6 class="m-0 font-weight-bold text-primary head_btn" onclick="ToggleVisibility('Scaler')"><span class="padded_large">Search</span></h6>
+									</div>
+									<!-- Card Body -->
+									<div class="card-body" id="Scaler">
+										<table class="shadow">
+											<tbody>
+												<tr>
+													<td class="bgDkRow1 padded">
+													<!-- <span id="Search"> -->
+														<span id="Search">
+															<div class="padded">Character</div>
+															<div id="Level" style="display:block">
+																<table class="shadow">
+																	<tbody>
+																		<tr>
+																			<td id="RangeLevelLabel" class="padded">Range Lv.</td>
+																			<td id="RangeLevelInput" class="padded">
+																				<select id="RangeLevel" style="width:100px;">
+																					<option value="0">0</option>
+																					<option value="1">±1</option>
+																					<option value="2">±2</option>
+																					<option value="3">±3</option>
+																					<option value="4">±4</option>
+																					<option value="5">±5</option>
+																					<option value="6">±6</option>
+																					<option value="7">±7</option>
+																					<option value="8">±8</option>
+																					<option value="9">±9</option>
+																					<option value="10">±10</option>
+																					<option value="11">±11</option>
+																					<option value="12">±12</option>
+																					<option value="13">±13</option>
+																					<option value="14">±14</option>
+																					<option value="15">±15</option>
+																					<option value="16">-5 to +15 (100%~140% exp)</option>
+																					<option value="17">-10 to +15 (95%~140% exp)</option>
+																					<option value="18">-15 to +15 (90%~140% exp)</option>
+																					<option value="19">-20 to +15 (85%~140% exp)</option>
+																					<option value="20">-25 to +15 (60%~140% exp)</option>
+																					<option value="21">-30 to +15 (35%~140% exp)</option>
+																				</select>
+																			</td>
+																			<td id="PremiumLabel" class="padded">Premium</td>
+																			<td id="PremiumInput" class="padded">
+																				<input type="checkbox" id="Premium">
+																			</td>
+																			<td id="BaseManualLabel" class="padded">Battle Manual (Base Exp)</td>
+																			<td id="BaseManualInput" class="padded">
+																				<select id="BaseManual" style="width:75px;">
+																					<option value="0">None</option>
+																					<option value="1">+30%</option>
+																					<option value="2">+50%</option>
+																					<option value="3">+75%</option>
+																					<option value="4">+100%</option>
+																				</select>
+																			</td>
+																			<td id="JobManualLabel" class="padded">Battle Manual (Job Exp)</td>
+																			<td id="JobManualInput" class="padded">
+																				<select id="JobManual" style="width:75px;">
+																					<option value="0">None</option>
+																					<option value="1">+30%</option>
+																					<option value="2">+50%</option>
+																					<option value="3">+75%</option>
+																					<option value="4">+100%</option>
+																				</select>
+																			</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+															<div class="padded">Race &amp; Element</div>
+															<div id="Race" style="display:block">
+																<table class="shadow">
+																	<tbody>
+																		<tr>
+																			<td id="RCFormlessLabel" class="padded">Formless</td>
+																			<td id="RCFormlessInput" class="padded">
+																				<input type="checkbox" id="RC_Formless" checked="">
+																			</td><td id="RCUndeadLabel" class="padded">Undead (Race)</td>
+																			<td id="RCUndeadInput" class="padded">
+																			<input type="checkbox" id="RC_Undead" checked="">
+																			</td>
+																			<td id="RCBruteLabel" class="padded">Brute </td>
+																			<td id="RCBruteInput" class="padded">
+																			<input type="checkbox" id="RC_Brute" checked=""></td>
+																			<td id="RCPlantLabel" class="padded">Plant</td>
+																			<td id="RCPlantInput" class="padded">
+																			<input type="checkbox" id="RC_Plant" checked=""></td>
+																			<td id="RCInsectLabel" class="padded">Insect</td>
+																			<td id="RCInsectInput" class="padded">
+																			<input type="checkbox" id="RC_Insect" checked="">
+																			</td>
+																			<td id="RCFishLabel" class="padded">Fish</td>
+																			<td id="RCFishInput" class="padded">
+																				<input type="checkbox" id="RC_Fish" checked="">
+																			</td>
+																			<td id="RCDemonLabel" class="padded">Demon</td>
+																			<td id="RCDemonInput" class="padded">
+																			<input type="checkbox" id="RC_Demon" checked=""></td>
+																			<td id="RCDemi_HumanLabel" class="padded">Demi Human</td>
+																			<td id="RCDemi_HumanInput" class="padded">
+																			<input type="checkbox" id="RC_Demi_Human" checked=""></td>
+																			<td id="RCAngelLabel" class="padded">Angel</td>
+																			<td id="RCAngelInput" class="padded">
+																			<input type="checkbox" id="RC_Angel" checked=""></td>
+																			<td id="RCDragonLabel" class="padded">Dragon</td>
+																			<td id="RCDragonInput" class="padded">
+																				<input type="checkbox" id="RC_Dragon" checked="">
+																			</td>
+																		</tr>
+																		<tr>
+																			<td id="ELENeutralLabel" class="padded">Neutral</td>
+																			<td id="ELENeutralInput" class="padded">
+																			<input type="checkbox" id="ELE_Neutral" checked=""></td>
+																			<td id="ELEWaterLabel" class="padded">Water</td>
+																			<td id="ELEWaterInput" class="padded">
+																			<input type="checkbox" id="ELE_Water" checked=""></td>
+																			<td id="ELEEarthLabel" class="padded">Earth</td>
+																			<td id="ELEEarthInput" class="padded">
+																			<input type="checkbox" id="ELE_Earth" checked=""></td>
+																			<td id="ELEFireLabel" class="padded">Fire</td>
+																			<td id="ELEFireInput" class="padded">
+																			<input type="checkbox" id="ELE_Fire" checked=""></td>
+																			<td id="ELEWindLabel" class="padded">Wind</td>
+																			<td id="ELEWindInput" class="padded">
+																			<input type="checkbox" id="ELE_Wind" checked=""></td>
+																			<td id="ELEPoisonLabel" class="padded">Poison</td>
+																			<td id="ELEPoisonInput" class="padded">
+																			<input type="checkbox" id="ELE_Poison" checked=""></td>
+																			<td id="ELEHolyLabel" class="padded">Holy</td>
+																			<td id="ELEHolyInput" class="padded">
+																			<input type="checkbox" id="ELE_Holy" checked=""></td>
+																			<td id="ELEShadowLabel" class="padded">Shadow</td>
+																			<td id="ELEShadowInput" class="padded">
+																			<input type="checkbox" id="ELE_Shadow" checked=""></td>
+																			<td id="ELEGhostLabel" class="padded">Ghost</td>
+																			<td id="ELEGhostInput" class="padded">
+																			<input type="checkbox" id="ELE_Ghost" checked=""></td>
+																			<td id="ELEUndeadLabel" class="padded">Undead (Element)</td>
+																			<td id="ELEUndeadInput" class="padded">
+																				<input type="checkbox" id="ELE_Undead" checked="">
+																			</td>
+																		</tr>
+																		<tr>
+																			<td id="SizeSmallLabel" class="padded">Small</td>
+																			<td id="SizeSmallInput" class="padded">
+																				<input type="checkbox" id="SizeSmall" checked="">
+																			</td>
+																			<td id="SizeMediumLabel" class="padded">Medium</td>
+																			<td id="SizeMediumInput" class="padded">
+																				<input type="checkbox" id="SizeMedium" checked="">
+																			</td>
+																			<td id="SizeLargeLabel" class="padded">Large</td>
+																			<td id="SizeLargeInput" class="padded">
+																				<input type="checkbox" id="SizeLarge" checked="">
+																			</td>
+																			<td class="padded"></td>
+																			<td class="padded"></td>
+																			<td class="padded"></td>
+																			<td class="padded"></td>
+																			<td class="padded"></td>
+																			<td class="padded"></td>
+																			<td class="padded"></td>
+																			<td class="padded"></td>
+																			<td class="padded"></td>
+																			<td class="padded"></td>
+																			<td class="padded"></td>
+																			<td class="padded"></td>
+																			<td class="padded"></td>
+																			<td class="padded"></td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+															<div id="SearchInput" class="padded">
+																<input type="button" id="Search" value="Search" onclick="BuildMonsterTable()">
+															</div>
+														</span>
+													</td>
+												</tr>
+												<tr>
+													<td class="bgDkRow1 padded">
+													<span id="Monsters"></span>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<!-- End of Main Content -->
+						
+					</form>
+				</div>
+			</div>
+			<!-- Footer -->
+			<footer class="sticky-footer bg-white">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<!-- <span>Copyright &copy; Your Website 2021</span> -->
+						Original simulator created by
+						<a href="http://roratorio.2-d.jp/ro/">ROratorio</a> and <a href="https://irowiki.org/">IROWiki.org</a><br>
+						Currently updated and maintained by Kord<br>
+						Current Version 2.1<br>
+						
+					</div>
+				</div>
+			</footer>
+			<!-- End of Footer -->
+			
+		</div>
+        <!-- End of Content Wrapper -->
+
+	</div>
+    <!-- End of Page Wrapper -->
+
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+    <!-- jQuery v3.6.0 -->
+	<script src="vendor/jquery/jquery.min.js"></script> 
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script> -->
+
+    <script src="vendor/chosen_v1.8.7/chosen.jquery.min.js"></script> 
+
+	<!-- Bootstrap core JavaScript-->
+    <!-- jquery -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+
+<style>
+	.table-responsive { 
+		overflow: unset;
+	}
+</style>
+	<script>
+		var version = '67';
+		var jsassets = [
+		'js/menu.js',
+		'js/variables.js',
+		//<!--verbage-->
+		'js/elements.js',
+		'js/exposition.js',
+		'js/itemNames.js',
+		'js/jobClasses.js',
+		'js/maps.js',
+		'js/projectiles.js',
+		'js/races.js',
+		'js/sizes.js',
+		'js/skillNames.js',
+		'js/speedPotions.js',
+		'js/statusAilments.js',
+		'js/weaponTypes.js',
+		//<!--tables-->
+		'js/defines.js',
+		'js/enchant.js',
+		'js/defineItem.js',
+		'js/attackSpeedNew.js',
+		'js/attackSpeedOld.js',
+		'js/baseExperience.js',
+		'js/elementTable.js',
+		'js/itemEffects.js',
+		'js/jobBonus.js',
+		'js/jobExperience.js',
+		'js/petTable.js',
+		'js/weaponSize.js',
+		'js/item.js',
+		'js/skill.js',
+		'js/monster.js',
+		'js/monster_new.js',
+		'js/card.js',
+		//<!--functions-->
+		'js/skillFormulasNew.js',
+		'js/magicAttack.js',
+		'js/physicAttack.js',
+		'js/math.js',
+		'js/helperFunctions.js',
+		'js/Enemy.js',
+		'js/Heal.js',
+		'js/roformulas.js',
+		'js/skillFormulas.js',
+		//<!--form-->
+		'js/head.js',
+		'js/events.js',
+		'js/cookies.js',
+		'js/test.js',
+		//<!-- 'js/news.js', -->
+
+		'js/foot.js',
+		];
+		
+		function loadAssets() {
+			jsassets.forEach(function(src) {
+                var script = document.createElement('script');
+                script.src = src;
+                script.async = false;
+                document.head.appendChild(script);
+            }); 
+		}
+		
+		$(function() {
+			loadAssets();
+			//activate Chosen for selects
+			$(window).on('selects-ready', function() {
+				$("select").chosen({no_results_text: "Oops, nothing found!"}); 
+			});
+		
+		 	//<!-- $(".card" ).draggable(); -->
+		});
+		$(":button").on('mousedown',function() {
+
+		  jQuery(this).addClass('activebutton');
+		  
+		  }).on('mouseup mouseleave', function() {
+			jQuery(this).removeClass('activebutton');
+		});
+	</script>	
+</body>
+
+</html>
