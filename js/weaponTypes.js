@@ -1,0 +1,26 @@
+{ // WeaponTypes [WeaponName]
+WeaponName = [
+["Безоружный","Unarmed"]
+,["Кинжал","Dagger"]
+,["Меч","One-handed Sword"]
+,["Двуручный меч","Two-handed Sword"]
+,["Копье","One-handed Spear"]
+,["Двуручный Копье","Two-handed Spear"]
+,["Топор","One-handed Axe"]
+,["Двуручный топор","Two-handed Axe"]
+,["Дубина","Mace"]
+,["Посох","Rod (One and two-handed)"]
+,["Поклон","Bow"]//
+,["Катар","Katar"]
+,["Книга","Book"]
+,["Кастет","Knuckle"]
+,["Музыкальный инструмент","Instrument"]
+,["Кнут","Whip"]
+,["Фума сюрикен","Huuma Shuriken"]
+,["Револьвер","Handgun"]
+,["Винтовка","Rifle"]
+,["Ружье","Shotgun"]
+,["Пулемет","Gatling Gun"]
+,["Гранатомет","Grenade Launcher"]
+];
+}
